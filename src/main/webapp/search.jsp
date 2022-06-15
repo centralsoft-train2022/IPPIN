@@ -24,7 +24,7 @@
 			<option value="夜">夜</option>
 			<option value="おやつ"> おやつ</option>
 		</select><br>
-
+		
 <span><font size="5"><label for="Amount">　　　　　　　　　　　　　　　　　　量</label></font></span>
 		<select name="Amount">
 			<option value="">選択してください</option>
@@ -40,10 +40,9 @@
 			<option value="そこそこ">そこそこ</option>
 			<option value="割と手間">割と手間</option>
 		</select><br>
-
-	 
+		
 <button onclick="location.href='./recom.jsp'">オススメ画面に戻る</button>
-<button onclick="location.href='./foodDetail.jsp'">詳細へ</button>
+<button>検索</button>
 
 </body>
 </html>
