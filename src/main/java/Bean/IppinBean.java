@@ -11,6 +11,35 @@ public class IppinBean
 	private String msg;
 	private String ippin; 
 	private List<FoodVo> ippinList;
+	private String Timezone;
+	private String Amount;
+	
+	
+	public String getTimezone() {
+		return Timezone;
+	}
+
+	public void setTimezone(String timezone) {
+		Timezone = timezone;
+	}
+
+	public String getAmount() {
+		return Amount;
+	}
+
+	public void setAmount(String amount) {
+		Amount = amount;
+	}
+
+	public String getCookTime() {
+		return CookTime;
+	}
+
+	public void setCookTime(String cookTime) {
+		CookTime = cookTime;
+	}
+
+	private String CookTime;
 
 	public IppinBean()
 	{}

@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import Bean.IppinBean;
+
 public class FoodDao
 {
 	private Connection con;
@@ -200,28 +202,80 @@ public class FoodDao
 			}	
 		}
 		
-		private static final String SELECT_ZYOUKEN_SQL =
-				 "select "
-			+ "   Name"
-			+ "   from "
-			+ "   food "
-			+ "   where "
-			+ "   TimeZone = ? "
-			+ "   AND "
-			+ "   Amount   = ? "
-			+ "   AND "
-			+ "   CookTime = ? ";
 		
-		public List<String> getZyoukentukiName(String timezone,String amount,String cooktime) 
+		
+		public List<String> getZyoukentukiName(String timezone, String amount, String cooktime) 
 		{
+			IppinBean bean = new IppinBean();
+			bean.setTimezone(timezone);
+			bean.setAmount(amount);
+			bean.setCookTime(cooktime);
 			
-			
+			System.out.println(bean.getTimezone());
+			String SELECT_ZYOUKEN_SQL = "select Name from food ";	
+			boolean flag = false;
+			boolean flag2 = false;
+			 
+			//TimeZoneが入力されていればwhere句で連結、されなければスキップ
+			            if (!bean.getTimezone().equals("未選択")) {
+			            	SELECT_ZYOUKEN_SQL += " WHERE TimeZone = ?";
+			                flag = true;
+			            }
+			                //Amountが入力されていれば処理を実施
+			            if (!bean.getAmount().equals("未選択")) {
+			                  //TimeZoneが入力されていなかった場合はWHERE、されていたらAND
+			                if(!flag){
+			                	SELECT_ZYOUKEN_SQL += " WHERE Amount = ?"; //TimeZoneが空欄の時はこの?が1番目
+			                    flag = true;
+			                }else{
+			                	SELECT_ZYOUKEN_SQL += " AND Amount = ?"; //TimeZoneが入力されればこの?は2番目
+			                }
+			            }
+			               //CookTimeが入力されていれば処理を実施
+			            if (!bean.getCookTime().equals("未選択")) {
+			                   //TimeZoneもAmountも空欄だった場合はwhere、どちらかもしくは両方入力されていたらAND
+			                if(!flag){
+			                	SELECT_ZYOUKEN_SQL += " WHERE CookTime = ?";
+			                }else{
+			                	SELECT_ZYOUKEN_SQL += " AND CookTime = ?";
+			                }
+			            }
+			            
+			            System.out.println(SELECT_ZYOUKEN_SQL);
+			            
 			List<String> list = new ArrayList<String>();
+			
 			try(PreparedStatement stmt = con.prepareStatement( SELECT_ZYOUKEN_SQL );)
 			{
-				stmt.setString( 1, timezone );
-				stmt.setString( 2, amount );
-				stmt.setString( 3, cooktime );
+				     //timeZoneが入力されていれば処理を実施
+				 if (!bean.getTimezone().equals("未選択")) {
+					    stmt.setString( 1, bean.getTimezone() );
+		                flag = true;
+		            }
+		              //Amountが入力されていれば処理を実施
+		            if (!bean.getAmount().equals("未選択")) {
+		                if(!flag){
+		                	stmt.setString( 1, bean.getAmount() ); 
+		                    flag2 = true;
+		                }else{
+		                	stmt.setString( 2, bean.getAmount() ); 
+		                	flag2 = true;
+		                }
+		            }
+		                //CookTimeが入力されていれば処理を実施
+		            if (!bean.getCookTime().equals("未選択")) {
+		            	
+		                 //TimeZoneもAmountも空欄だった場合はwhere、どちらかもしくは両方入力されていたらAND
+		            	
+		                if(!flag && !flag2){
+		                	stmt.setString( 1, bean.getCookTime() );
+		                }else if( (!flag && flag2) || (flag && !flag2) ){
+		                	stmt.setString( 2, bean.getCookTime() );
+		                }else {
+		                	stmt.setString( 3, bean.getCookTime() );
+		                }
+		            }
+				
 				ResultSet rset = stmt.executeQuery();
 
 				while (rset.next())

@@ -40,6 +40,11 @@ public class IppinServlet extends HttpServlet
 		String amStr = request.getParameter("Amount");
 		String crStr = request.getParameter("CookTime");
 		
+	
+		
+		
+		
+		
 		List<String> ippinList = null;
 		DBUtil dbUtil = new DBUtil();
 
@@ -48,7 +53,7 @@ public class IppinServlet extends HttpServlet
 		{
 			FoodDao edao = new FoodDao(con);
 
-			ippinList = edao.getZyoukentukiName(tzStr,amStr,crStr);
+			ippinList = edao.getZyoukentukiName(tzStr, amStr, crStr);
 
 			if(ippinList.size() == 0)
 			{
