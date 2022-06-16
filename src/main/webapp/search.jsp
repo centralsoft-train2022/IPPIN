@@ -46,6 +46,6 @@
 		</select><br>
 		
 <button onclick="location.href='./recom.jsp'">オススメ画面に戻る</button>
-<input type="button" value="検索" onclick="OnButtonClick();"/><br />
+<input type="button" value="検索" onclick="SearchServlet"/><br />
 </body>
 </html>
