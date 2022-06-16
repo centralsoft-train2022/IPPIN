@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
 --
--- Host: localhost    Database: ippin
+-- Host: localhost    Database: mydb
 -- ------------------------------------------------------
 -- Server version	8.0.28
 
@@ -16,35 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `food`
+-- Table structure for table `good`
 --
 
-DROP TABLE IF EXISTS `food`;
+DROP TABLE IF EXISTS `good`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `food` (
-  `FoodID` int NOT NULL,
-  `Amount` varchar(10) NOT NULL,
-  `TimeZone` varchar(10) NOT NULL,
-  `CookTime` varchar(10) NOT NULL,
-  `Name` varchar(50) NOT NULL,
-  `Explanation` varchar(1000) DEFAULT NULL,
-  `Foodcol` varchar(45) DEFAULT NULL,
-  `PhotoFileName` varchar(100) DEFAULT NULL,
-  `User_UserID` int NOT NULL,
-  PRIMARY KEY (`FoodID`,`User_UserID`),
-  KEY `fk_Food_User1_idx` (`User_UserID`),
-  CONSTRAINT `fk_Food_User1` FOREIGN KEY (`User_UserID`) REFERENCES `user` (`UserID`)
+CREATE TABLE `good` (
+  `GoodID` int NOT NULL AUTO_INCREMENT,
+  `User_userID` int NOT NULL,
+  `Food_FoodID` int NOT NULL,
+  PRIMARY KEY (`GoodID`),
+  KEY `fk_Good_User1_idx` (`User_userID`),
+  KEY `fk_Good_Food1_idx` (`Food_FoodID`),
+  CONSTRAINT `fk_Good_Food1` FOREIGN KEY (`Food_FoodID`) REFERENCES `food` (`FoodID`),
+  CONSTRAINT `fk_Good_User1` FOREIGN KEY (`User_userID`) REFERENCES `user` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `food`
+-- Dumping data for table `good`
 --
 
-LOCK TABLES `food` WRITE;
-/*!40000 ALTER TABLE `food` DISABLE KEYS */;
-/*!40000 ALTER TABLE `food` ENABLE KEYS */;
+LOCK TABLES `good` WRITE;
+/*!40000 ALTER TABLE `good` DISABLE KEYS */;
+/*!40000 ALTER TABLE `good` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -56,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-15 10:44:42
+-- Dump completed on 2022-06-16 10:21:00

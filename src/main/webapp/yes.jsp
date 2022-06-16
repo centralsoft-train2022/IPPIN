@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:useBean id="bean" class="Bean.YesBean" scope="request" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +9,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-よかったね
+<%=bean.getMsg() %><br>
+
+<img src="サル.jfif" alt="サル" title="拍手するサル"><br>
 <button onclick="location.href='./userHome.jsp'">ホームに戻る</button>
 </body>
 </html>

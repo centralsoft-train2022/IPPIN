@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
 --
--- Host: localhost    Database: ippin
+-- Host: localhost    Database: mydb
 -- ------------------------------------------------------
 -- Server version	8.0.28
 
@@ -24,13 +24,13 @@ DROP TABLE IF EXISTS `ippin_list`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ippin_list` (
   `IPPINTableID` int NOT NULL AUTO_INCREMENT,
+  `User_userID` int NOT NULL,
   `Food_FoodID` int NOT NULL,
-  `User_UserID` int NOT NULL,
-  PRIMARY KEY (`IPPINTableID`,`User_UserID`),
+  PRIMARY KEY (`IPPINTableID`),
+  KEY `fk_IPPIN_Table_User1_idx` (`User_userID`),
   KEY `fk_IPPIN_Table_Food1_idx` (`Food_FoodID`),
-  KEY `fk_IPPIN_List_User1_idx` (`User_UserID`),
-  CONSTRAINT `fk_IPPIN_List_User1` FOREIGN KEY (`User_UserID`) REFERENCES `user` (`UserID`),
-  CONSTRAINT `fk_IPPIN_Table_Food1` FOREIGN KEY (`Food_FoodID`) REFERENCES `food` (`FoodID`)
+  CONSTRAINT `fk_IPPIN_Table_Food1` FOREIGN KEY (`Food_FoodID`) REFERENCES `food` (`FoodID`),
+  CONSTRAINT `fk_IPPIN_Table_User1` FOREIGN KEY (`User_userID`) REFERENCES `user` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-15 10:44:42
+-- Dump completed on 2022-06-16 10:21:00

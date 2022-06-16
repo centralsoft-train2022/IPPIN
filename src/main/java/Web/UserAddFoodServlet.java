@@ -1,4 +1,4 @@
-package controller;
+package Web;
 
 import java.io.IOException;
 
@@ -8,8 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import model.UserAddFoodBean;
 
 /**
  * Servlet implementation class UserAddFoodServlet
@@ -46,7 +44,7 @@ public class UserAddFoodServlet extends HttpServlet
 		}
 		else
 		{
-			UserAddFoodBean bean = new UserAddFoodBean( );
+			Bean.UserAddFoodBean bean = new Bean.UserAddFoodBean( );
 
 			// セッションにユーザー情報保存してsetする
 

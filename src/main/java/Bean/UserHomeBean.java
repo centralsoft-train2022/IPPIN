@@ -1,6 +1,6 @@
-package model;
+package Bean;
 
-public class UserAddFoodBean {
+public class UserHomeBean {
 	private String message;
 	private String userName;
 

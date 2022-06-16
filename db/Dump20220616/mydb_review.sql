@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
 --
--- Host: localhost    Database: ippin
+-- Host: localhost    Database: mydb
 -- ------------------------------------------------------
 -- Server version	8.0.28
 
@@ -16,28 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user`
+-- Table structure for table `review`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `review`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user` (
-  `UserID` int NOT NULL,
-  `Passward` varchar(45) NOT NULL,
-  `UserKbn` varchar(10) NOT NULL,
-  `UserName` varchar(45) NOT NULL,
-  PRIMARY KEY (`UserID`)
+CREATE TABLE `review` (
+  `reviewID` int NOT NULL AUTO_INCREMENT,
+  `ReviewSentence` varchar(1000) NOT NULL,
+  `User_userID` int NOT NULL,
+  `Food_FoodID` int NOT NULL,
+  PRIMARY KEY (`reviewID`),
+  KEY `fk_review_User1_idx` (`User_userID`),
+  KEY `fk_review_Food1_idx` (`Food_FoodID`),
+  CONSTRAINT `fk_review_Food1` FOREIGN KEY (`Food_FoodID`) REFERENCES `food` (`FoodID`),
+  CONSTRAINT `fk_review_User1` FOREIGN KEY (`User_userID`) REFERENCES `user` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `review`
 --
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+LOCK TABLES `review` WRITE;
+/*!40000 ALTER TABLE `review` DISABLE KEYS */;
+/*!40000 ALTER TABLE `review` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-15 10:44:42
+-- Dump completed on 2022-06-16 10:21:00

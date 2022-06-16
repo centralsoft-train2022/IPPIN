@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:useBean id="bean" class="Bean.IppinBean" scope="request" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +9,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<input type="text" onclick="location.href='foodDetail2.jsp'" value="たけのこの里">
-<button onclick="location.href='./yes.jsp'">YES</button>
-<button onclick="location.href='./ippin.jsp'">NO</button>
+<%=bean.getMsg() %><br>
+<%=bean.getIppin() %><br>
+
+<form  method="POST" action="YesServlet">
+<input type="submit" value="YES">
+</form>
+
+<form  method="POST" action="NoServlet">
+<input type="submit" value="NO">
+</form>
+
 </body>
 </html>
