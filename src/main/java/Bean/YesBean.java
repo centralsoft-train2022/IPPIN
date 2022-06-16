@@ -7,7 +7,7 @@ import Dao.FoodVo;
 public class YesBean
 {
 	private String loginid;
-	private String password;
+	private String userName;
 	private String msg;
 	private String ippin; 
 	private List<FoodVo> ippinList;
@@ -23,12 +23,12 @@ public class YesBean
 		this.loginid = loginid;
 	}
 	
-	public String getPassword() {
-		return password;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getMsg() {

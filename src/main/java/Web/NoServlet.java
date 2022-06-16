@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import Bean.IppinBean;
+import Bean.RecomBean;
 import Dao.DBUtil;
 import Dao.FoodDao;
+import Dao.UserVo;
 
 
 @WebServlet("/NoServlet")
@@ -35,6 +37,14 @@ public class NoServlet extends HttpServlet{
 		HttpSession session =request.getSession();
 		int i =(int)session.getAttribute("ListNumber");
 		String ippinname =(String)session.getAttribute("IPPINName");
+		UserVo username =(UserVo)session.getAttribute("UserName");
+		int id =(int)session.getAttribute("ID");
+		
+		bean.setUserName(username.getUserName());
+		
+		
+		session.setAttribute( "UserName", username );
+		session.setAttribute( "ID", id );
 		
 		//ランダムで生成したリスト引継ぎ
 		@SuppressWarnings("unchecked")
@@ -67,6 +77,9 @@ public class NoServlet extends HttpServlet{
 		}
 		catch(Exception e)
 		{
+			RecomBean rebean = new RecomBean();
+			rebean.setMsg("【条件に合う逸品が無くなりました。オススメから逸品を追加してみては？】");
+			request.setAttribute("bean", rebean);
 			RequestDispatcher disp = request.getRequestDispatcher("/recom.jsp");
 			disp.forward(request, response);
 		}

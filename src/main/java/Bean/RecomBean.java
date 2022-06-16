@@ -4,7 +4,7 @@ import java.util.List;
 
 import Dao.FoodVo;
 
-public class IppinBean
+public class RecomBean
 {
 	private String loginid;
 	private String userName;
@@ -12,7 +12,7 @@ public class IppinBean
 	private String ippin; 
 	private List<FoodVo> ippinList;
 
-	public IppinBean()
+	public RecomBean()
 	{}
 
 	public String getLoginID() {

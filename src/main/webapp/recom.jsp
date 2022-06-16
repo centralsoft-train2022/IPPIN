@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <jsp:useBean id="bean" class="Bean.RecomBean" scope="request" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-おすすめリスト画面
+おすすめリスト画面<br>
+<%=bean.getMsg() %><br>
+
 <button onclick="location.href='./userHome.jsp'">ホームに戻る</button>
 <button onclick="location.href='./search.jsp'">検索</button>
 <a href="foodDetail.jsp"><img src="image/takenoko.jpg" ></a>

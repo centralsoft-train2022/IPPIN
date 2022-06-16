@@ -9,9 +9,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+ログイン社員名:<%=bean.getUserName() %><br>
 <%=bean.getMsg() %><br>
 
 <img src="サル.jfif" alt="サル" title="拍手するサル"><br>
-<button onclick="location.href='./userHome.jsp'">ホームに戻る</button>
+
+<form  method="POST" action="UserHomeServlet">
+<input type="submit" value="ホームに戻る">
+</form>
+
 </body>
 </html>

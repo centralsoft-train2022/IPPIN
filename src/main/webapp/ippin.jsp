@@ -9,6 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+ログイン社員名:<%=bean.getUserName() %><br>
+
 <%=bean.getMsg() %><br>
 <%=bean.getIppin() %><br>
 

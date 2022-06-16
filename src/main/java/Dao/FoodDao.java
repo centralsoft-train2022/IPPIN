@@ -166,4 +166,43 @@ public class FoodDao
 				throw new RuntimeException( e );
 			}	
 		}
+		
+		private static final String SELECT_ZYOUKEN_SQL =
+				 "select "
+			+ "   Name"
+			+ "   from "
+			+ "   food "
+			+ "   where "
+			+ "   TimeZone = ? "
+			+ "   AND "
+			+ "   Amount   = ? "
+			+ "   AND "
+			+ "   CookTime = ? ";
+		
+		public List<String> getZyoukentukiName(String timezone,String amount,String cooktime) 
+		{
+			
+			
+			List<String> list = new ArrayList<String>();
+			try(PreparedStatement stmt = con.prepareStatement( SELECT_ZYOUKEN_SQL );)
+			{
+				stmt.setString( 1, timezone );
+				stmt.setString( 2, amount );
+				stmt.setString( 3, cooktime );
+				ResultSet rset = stmt.executeQuery();
+
+				while (rset.next())
+				{
+					FoodVo em = new FoodVo();
+		            em.setFoodName(rset.getString(1));
+		            list.add(em.getFoodName());
+			    }
+			}
+			catch( SQLException e )
+			{
+				throw new RuntimeException( e );
+			}
+			
+			return list;
+		}
 }

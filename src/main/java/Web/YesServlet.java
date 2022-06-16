@@ -17,6 +17,7 @@ import Bean.YesBean;
 import Dao.DBUtil;
 import Dao.FoodDao;
 import Dao.FoodHistoryDao;
+import Dao.UserVo;
 
 
 @WebServlet("/YesServlet")
@@ -30,9 +31,16 @@ public class YesServlet extends HttpServlet{
 		YesBean bean = new YesBean();
 		bean.setMsg("【決まってよかったね】");
 		
+		//session取得
 		HttpSession session =request.getSession();
 		String ippinname =(String)session.getAttribute("IPPINName");
+		UserVo username =(UserVo)session.getAttribute("UserName");
+		int id =(int)session.getAttribute("ID");
 		
+		bean.setUserName(username.getUserName());
+		
+		session.setAttribute( "UserName", username );
+		session.setAttribute( "ID", id );
 		
 		DBUtil dbUtil = new  DBUtil();
 		
@@ -50,7 +58,7 @@ public class YesServlet extends HttpServlet{
             fdao.sumIppinGoodCount(foodid);
             
             //YESボタンを押した時間を追加
-			fhdao.insert(timestamp,1,foodid);
+			fhdao.insert(timestamp,id,foodid);
 			
 			con.commit();
 		}
