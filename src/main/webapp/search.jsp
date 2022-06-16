@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<jsp:useBean id="bean" class="Bean.SearchBean" scope="request" />
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>SearchServlent</title>
+ <script src="Web/SearchServlet.java"></script>
 </head>
 <body>
 <div style="padding: 10px; margin-bottom: 10px; border: 5px double #333333;">
@@ -42,7 +46,6 @@
 		</select><br>
 		
 <button onclick="location.href='./recom.jsp'">オススメ画面に戻る</button>
-<button>検索</button>
-
+<input type="button" value="検索" onclick="SearchServlet"/><br />
 </body>
 </html>

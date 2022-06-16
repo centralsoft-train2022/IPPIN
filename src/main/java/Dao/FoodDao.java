@@ -50,6 +50,39 @@ public class FoodDao
 		return list;
 	}
 	
+	private static final String SELECT_SEARCHNAME_SQL = "select "
+			+ "   name"
+			+ "   from "
+			+ "   food "
+			+ "   where "
+			+ "   amount = ? "
+			+ "   timezone = ? "
+			+ "   cooktime = ? ";
+
+	// 逸品になったfoodidを取得
+	public List<String> getFoodname(String Amount, String TimeZone, String CookTime) {
+		List<String> foodname = null;
+		try (PreparedStatement stmt = con.prepareStatement(SELECT_SEARCHNAME_SQL);) {
+			stmt.setString(1, Amount);
+			stmt.setString(2, TimeZone);
+			stmt.setString(3, CookTime);
+
+			ResultSet rset = stmt.executeQuery();
+
+			while (rset.next()) {
+				FoodVo em = new FoodVo();
+				//em.setFoodid(rset.getInt(1));
+				em.setFoodid(rset.getInt(1));
+				foodname.add(em.getFoodName());
+				//System.out.println(foodid);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		return foodname;
+	}
+	
 	private static final String SELECT_ID_SQL =
 			 "select "
 		+ "   Foodid"
