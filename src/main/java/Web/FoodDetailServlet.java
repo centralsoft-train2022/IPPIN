@@ -1,7 +1,13 @@
+<<<<<<< HEAD:src/main/java/Web/FoodDetailServlet.java
 package Web;
 
 import java.io.IOException;
 
+=======
+package controller;
+
+import java.io.IOException;
+>>>>>>> 06c4df1bc68c8f08be8574d8913b9d29f607462f:src/main/java/controller/FoodDetailServlet.java
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,4 +45,8 @@ public class FoodDetailServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
+<<<<<<< HEAD:src/main/java/Web/FoodDetailServlet.java
 }
+=======
+}
+>>>>>>> 06c4df1bc68c8f08be8574d8913b9d29f607462f:src/main/java/controller/FoodDetailServlet.java
