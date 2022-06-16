@@ -11,8 +11,7 @@
 <body>
 ログイン社員名:<%=bean.getUserName() %><br>
 
-<%=bean.getMsg() %><br>
-<%=bean.getIppin() %><br>
+<a href= './recom.jsp' ><%=bean.getIppin() %></a><br>
 
 <form  method="POST" action="YesServlet">
 <input type="submit" value="YES">

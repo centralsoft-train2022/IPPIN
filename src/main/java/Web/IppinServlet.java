@@ -68,10 +68,10 @@ public class IppinServlet extends HttpServlet
 			String nearlyIppin = getNearlyIppin();
 
 			System.out.println(ippinList);
-			
+	
 			// 前回食べた物を最後に移動
 			//もし条件で絞られたリストの中に前回食べた物があったらそれを一番最後にやる
-			if( ippinList.indexOf(ippinList) != -1)
+			if( ippinList.indexOf(nearlyIppin) != -1)
 			{
 				ippinList.remove(ippinList.lastIndexOf(nearlyIppin));
 				ippinList.add(nearlyIppin);
