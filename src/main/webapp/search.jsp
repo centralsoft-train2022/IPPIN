@@ -55,19 +55,16 @@
 <table  border="1" width="500" cellspacing="0" cellpadding="5" bordercolor="#333333">
 <tr>
 	<th>
-		社員名
+		食品名
 	</th>
-		
-	<th>
-	メールアドレス
-	</th>
+
 </tr>
 
 
 <% for( Dao.FoodVo emp: bean.getFoodList()){ %>
 <tr>
 	<td>
-   	<%=emp.getFoodName() %> <br>
+   	<a href="/FoodDetailServlet"><%=emp.getFoodName() %></a> <br>
 	</td>
 </tr>
 

@@ -66,6 +66,7 @@ public class SearchServlet extends HttpServlet {
 		list.add(fv);
 
 		SearchBean sb = new SearchBean();
+		sb.setFoodList(list);
 		sb.setAmount(am);
 		sb.setTimeZone(tz);
 		sb.setCookTime(ct);
