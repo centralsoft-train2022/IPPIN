@@ -1,9 +1,9 @@
 package Web;
 
+import Bean.UserHomeBean;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import Bean.UserHomeBean;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet
@@ -58,7 +56,7 @@ public class LoginServlet extends HttpServlet
 		Dao.DBUtil dbUtil = new  Dao.DBUtil();
 
 		//コネクションを取得
-		try( Connection  con = dbUtil.getConection(); )
+		try( Connection  con = dbUtil.getConnection(); )
 		{
 			Dao.UserDao edao = new Dao.UserDao( con );
 

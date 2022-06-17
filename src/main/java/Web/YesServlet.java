@@ -1,10 +1,14 @@
 package Web;
 
+import Bean.YesBean;
+import Dao.DBUtil;
+import Dao.FoodDao;
+import Dao.FoodHistoryDao;
+import Dao.UserVo;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,12 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import Bean.YesBean;
-import Dao.DBUtil;
-import Dao.FoodDao;
-import Dao.FoodHistoryDao;
-import Dao.UserVo;
 
 
 @WebServlet("/YesServlet")
@@ -47,7 +45,7 @@ public class YesServlet extends HttpServlet{
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
 		//コネクションを取得
-		try( Connection  con = dbUtil.getConection(); )
+		try( Connection  con = dbUtil.getConnection(); )
 		{
 			FoodDao fdao = new FoodDao( con );
 			FoodHistoryDao fhdao = new FoodHistoryDao(con);

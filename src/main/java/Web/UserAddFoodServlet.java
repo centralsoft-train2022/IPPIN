@@ -1,19 +1,17 @@
 package Web;
 
+import Bean.UserAddFoodBean;
+import Dao.DBUtil;
+import Dao.FoodDao;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import Bean.UserAddFoodBean;
-import Dao.DBUtil;
-import Dao.FoodDao;
 
 /**
  * Servlet implementation class UserAddFoodServlet
@@ -101,7 +99,7 @@ public class UserAddFoodServlet extends HttpServlet
 
 		DBUtil db = new DBUtil( );
 
-		try( Connection c = db.getConection( ); )
+		try( Connection c = db.getConnection( ); )
 		{
 
 			FoodDao dao = new FoodDao( c );

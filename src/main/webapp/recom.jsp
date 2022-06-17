@@ -11,9 +11,9 @@
 おすすめリスト画面<br>
 <%=bean.getMsg() %><br>
 
+<a href="FoodDetailServlet?foodID=1"><img src="image/takenoko.jpg" ></a>
+<a href="FoodDetailServlet?foodID=2"><img src="image/kinoko.jpg" ></a>
 <button onclick="location.href='./userHome.jsp'">ホームに戻る</button>
 <button onclick="location.href='./search.jsp'">検索</button>
-<a href="foodDetail.jsp"><img src="image/takenoko.jpg" ></a>
-<a href="foodDetail.jsp"><img src="image/kinoko.jpg" ></a>
 </body>
 </html>

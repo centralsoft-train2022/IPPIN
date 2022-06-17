@@ -1,12 +1,18 @@
 package Web;
 
+import Bean.FoodDetailBean;
+import Dao.DBUtil;
+import Dao.FoodDao;
 import java.io.IOException;
-
+import java.sql.Connection;
+import java.sql.SQLException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 /**
  * Servlet implementation class FoodDetailServlet
@@ -27,6 +33,12 @@ public class FoodDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String strfoodID = request.getParameter("foodID");
+		int foodID = Integer.parseInt(strfoodID);
+		FoodDetailBean bean = getBean(foodID);
+		request.setAttribute("bean", bean);
+		RequestDispatcher disp = request.getRequestDispatcher("/foodDetail.jsp");
+		disp.forward(request, response);
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -38,8 +50,19 @@ public class FoodDetailServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
-
+	
+	private FoodDetailBean getBean(int foodID) 
+	{
+		DBUtil dbutil = new DBUtil();
+		FoodDetailBean bean=null;
+		try(Connection c = dbutil.getConnection())
+		{
+			FoodDao foodDao = new FoodDao(c);
+			bean = foodDao.getFoodDetailBean(foodID);
+		} catch (SQLException e)
+		{
+			throw new RuntimeException(e);
+		}
+		return bean;
+	}
 }
-
-
