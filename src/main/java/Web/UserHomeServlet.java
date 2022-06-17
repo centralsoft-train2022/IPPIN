@@ -26,12 +26,12 @@ public class UserHomeServlet extends HttpServlet
 		//session取得
 		HttpSession session =request.getSession();
 		UserVo username =(UserVo)session.getAttribute("UserName");
-		int id =(int)session.getAttribute("ID");
+//		int id =(int)session.getAttribute("ID");
 				
 		bean.setUserName(username.getUserName());
 				
-		session.setAttribute( "UserName", username );
-		session.setAttribute( "ID", id );
+//		session.setAttribute( "UserName", username );
+//		session.setAttribute( "ID", id );
 		
 		//次の画面遷移の処理
 		bean.setUserName( username.getUserName() );

@@ -46,7 +46,11 @@ public class IppinServlet extends HttpServlet
 			FoodDao edao = new FoodDao(con);
 
 			ippinList = edao.getZyoukentukiName(tzStr, amStr, crStr);
+			
+			//前回選んだ逸品を取得
+			String nearlyIppin = getNearlyIppin(con);
 
+			//条件に合う逸品がなかった場合
 			if(ippinList.size() == 0)
 			{
 				RecomBean rebean = new RecomBean();
@@ -56,17 +60,15 @@ public class IppinServlet extends HttpServlet
 				disp.forward(request, response);
 			}
 
-			String nearlyIppin = getNearlyIppin();
-
 			System.out.println(ippinList);
 	
-			// 前回食べた物を最後に移動
 			//もし条件で絞られたリストの中に前回食べた物があったらそれを一番最後にやる
 			if( ippinList.indexOf(nearlyIppin) != -1)
 			{
 				ippinList.remove(ippinList.lastIndexOf(nearlyIppin));
 				ippinList.add(nearlyIppin);
 			}
+			
 			// 取得したデータを表示する
 			System.out.println(ippinList);
 
@@ -79,7 +81,7 @@ public class IppinServlet extends HttpServlet
 		//session取得
 		HttpSession session =request.getSession();
 		UserVo username =(UserVo)session.getAttribute("UserName");
-		int id =(int)session.getAttribute("ID");
+//		int id =(int)session.getAttribute("ID");
 		
 		bean.setUserName(username.getUserName());
 		
@@ -94,8 +96,8 @@ public class IppinServlet extends HttpServlet
 		session.setAttribute("ListNumber", i); // 取得する配列の番地
 		session.setAttribute("IPPINList", ippinList);// 配列の中身
 		session.setAttribute("IPPINName", ippin);// 逸品の名前
-		session.setAttribute("UserName", username);// ユーザーの名前
-		session.setAttribute("id", id);// ユーザーid
+//		session.setAttribute("UserName", username);// ユーザーの名前
+//		session.setAttribute("id", id);// ユーザーid
 
 		request.setAttribute("bean", bean);
 
@@ -105,28 +107,23 @@ public class IppinServlet extends HttpServlet
 	}
 
 	// DBから更新が一番最近の逸品を取得する
-	private static String getNearlyIppin()
+	private static String getNearlyIppin(Connection con)
 	{
-		DBUtil dbUtil = new DBUtil();
+		FoodHistoryDao ehdao = new FoodHistoryDao(con);
+		int foodid = ehdao.getFoodid();
 
 		// コネクションを取得
 		try (Connection con = dbUtil.getConnection();)
 		{
 			FoodHistoryDao ehdao = new FoodHistoryDao(con);
 			int foodid = ehdao.getFoodid();
+		String nearlyname = fdao.getNearlyIppin(foodid);
 
-			FoodDao fdao = new FoodDao(con);
+		System.out.println(nearlyname);
 
-			String nearlyname = fdao.getNearlyIppin(foodid);
+		return nearlyname;
 
-			System.out.println(nearlyname);
-
-			return nearlyname;
-
-		} catch (SQLException e)
-		{
-			throw new RuntimeException(e);// ランタイム例外に載せ替えて再スロー
-		}
+		
 	}
 
 }
