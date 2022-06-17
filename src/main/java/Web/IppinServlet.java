@@ -43,7 +43,7 @@ public class IppinServlet extends HttpServlet
 		DBUtil dbUtil = new DBUtil();
 
 		// コネクションを取得
-		try (Connection con = dbUtil.getConection();)
+		try (Connection con = dbUtil.getConnection();)
 		{
 			FoodDao edao = new FoodDao(con);
 
@@ -112,7 +112,7 @@ public class IppinServlet extends HttpServlet
 		DBUtil dbUtil = new DBUtil();
 
 		// コネクションを取得
-		try (Connection con = dbUtil.getConection();)
+		try (Connection con = dbUtil.getConnection();)
 		{
 			FoodHistoryDao ehdao = new FoodHistoryDao(con);
 			int foodid = ehdao.getFoodid();

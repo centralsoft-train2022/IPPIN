@@ -92,7 +92,7 @@ public class NoServlet extends HttpServlet{
 			DBUtil dbUtil = new DBUtil();
 
 			// コネクションを取得
-			try (Connection con = dbUtil.getConection();)
+			try (Connection con = dbUtil.getConnection();)
 			{
 				FoodDao fdao = new FoodDao( con );
 				int foodid = fdao.getFoodid(foodname);

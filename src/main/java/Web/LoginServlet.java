@@ -58,7 +58,7 @@ public class LoginServlet extends HttpServlet
 		Dao.DBUtil dbUtil = new  Dao.DBUtil();
 
 		//コネクションを取得
-		try( Connection  con = dbUtil.getConection(); )
+		try( Connection  con = dbUtil.getConnection(); )
 		{
 			Dao.UserDao edao = new Dao.UserDao( con );
 

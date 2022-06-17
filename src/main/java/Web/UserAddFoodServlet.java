@@ -101,7 +101,7 @@ public class UserAddFoodServlet extends HttpServlet
 
 		DBUtil db = new DBUtil( );
 
-		try( Connection c = db.getConection( ); )
+		try( Connection c = db.getConnection( ); )
 		{
 
 			FoodDao dao = new FoodDao( c );

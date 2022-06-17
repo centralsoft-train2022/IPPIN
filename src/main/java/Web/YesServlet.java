@@ -47,7 +47,7 @@ public class YesServlet extends HttpServlet{
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
 		//コネクションを取得
-		try( Connection  con = dbUtil.getConection(); )
+		try( Connection  con = dbUtil.getConnection(); )
 		{
 			FoodDao fdao = new FoodDao( con );
 			FoodHistoryDao fhdao = new FoodHistoryDao(con);
