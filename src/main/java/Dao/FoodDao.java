@@ -203,7 +203,7 @@ public class FoodDao
 		}
 		
 		
-		
+		//逸品検索条件選択
 		public List<String> getZyoukentukiName(String timezone, String amount, String cooktime) 
 		{
 			IppinBean bean = new IppinBean();
@@ -291,5 +291,57 @@ public class FoodDao
 			}
 			
 			return list;
+		}
+		
+		//逸品登録
+		private static final String INSERT_TAG_SQL = "insert\n"
+		        + " into food\n"
+		        + " (\n"
+		        + " foodid\n"
+		        + " ,Name\n"
+		        + ",timezone\n"
+		        + ",amount\n"
+		        + ",cooktime\n"
+		        + ",photoFileName\n"
+		        + ",user_userid\n"
+		        + " )\n"
+		        + " values\n"
+		        + " (\n"
+		        + "  ?\n"
+		        + "  ,?\n"
+		        + "  ,?\n"
+		        + "  ,?\n"
+		        + "  ,?\n"
+		        + "  ,?\n"
+		        + "  ,?\n"
+		        + " )";
+
+		public void insert(
+		        int foodid, String ippinName, String timeZone, String amount, String cookTime, String photoFileName,
+		        int userid
+		)
+		{
+
+			System.out.println( ippinName + timeZone + amount + cookTime + photoFileName );
+
+			try( PreparedStatement stmt = this.con.prepareStatement( INSERT_TAG_SQL ) )
+			{
+				stmt.setInt( 1, foodid );
+				stmt.setString( 2, ippinName );
+				stmt.setString( 3, timeZone );
+				stmt.setString( 4, amount );
+				stmt.setString( 5, cookTime );
+				stmt.setString( 6, photoFileName );
+				stmt.setInt( 7, userid );
+
+				/* ｓｑｌ実行 */
+				stmt.executeUpdate( );
+				con.commit( );
+			}
+			catch( SQLException e )
+			{
+				throw new RuntimeException( e );
+			}
+
 		}
 }

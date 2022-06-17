@@ -1,6 +1,8 @@
 package Web;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import Bean.UserAddFoodBean;
+import Dao.DBUtil;
+import Dao.FoodDao;
 
 /**
  * Servlet implementation class UserAddFoodServlet
@@ -33,18 +39,33 @@ public class UserAddFoodServlet extends HttpServlet
 	protected void doGet( HttpServletRequest request, HttpServletResponse response )
 	        throws ServletException, IOException
 	{
-
+		request.setCharacterEncoding( "UTF-8" );// 文字化け防止
 		String fromStr = request.getParameter( "from1" );
 
 		if( fromStr != null )
 		{
+			// 画面から入力したデータを取得する
+
+			String	ippinName		= request.getParameter( "IppinName" );
+			String	timeZone		= request.getParameter( "TimeZone" );
+			String	amount			= request.getParameter( "Amount" );
+			String	cookTime		= request.getParameter( "CookTime" );
+			String	photoFileName	= request.getParameter( "PhotoFileName" );
+
+			System.out.println( ippinName );
+			System.out.println( timeZone );
+			System.out.println( amount );
+			System.out.println( cookTime );
+			System.out.println( photoFileName );
+
+			registFood( 11, ippinName, timeZone, amount, cookTime, photoFileName, 1 );
 
 			RequestDispatcher disp = request.getRequestDispatcher( "/userList.jsp" );
 			disp.forward( request, response );
 		}
 		else
 		{
-			Bean.UserAddFoodBean bean = new Bean.UserAddFoodBean( );
+			UserAddFoodBean bean = new UserAddFoodBean( );
 
 			// セッションにユーザー情報保存してsetする
 
@@ -68,8 +89,31 @@ public class UserAddFoodServlet extends HttpServlet
 		doGet( request, response );
 	}
 
-//	 private void registFood( FoodVo foodVo ) 作ってよびだし←まだ
-//	 {
-//
-//	 }
+	private void registFood(
+	        int foodid, String ippinName, String timeZone, String amount, String cookTime, String photoFileName,
+	        int userid
+	)
+	{
+
+		// DBから従業員を取得 仮実装
+		// emp = new EmployeesVo();
+		// emp.setEmployeename();
+
+		DBUtil db = new DBUtil( );
+
+		try( Connection c = db.getConection( ); )
+		{
+
+			FoodDao dao = new FoodDao( c );
+			dao.insert( foodid, ippinName, timeZone, amount, cookTime, photoFileName, userid );
+
+			c.commit( );
+			c.setAutoCommit( true );
+		}
+		catch( SQLException e )
+		{
+			throw new RuntimeException( e );
+		}
+	}
+
 }
