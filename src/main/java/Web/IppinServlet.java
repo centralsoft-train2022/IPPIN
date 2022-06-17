@@ -81,7 +81,7 @@ public class IppinServlet extends HttpServlet
 		//session取得
 		HttpSession session =request.getSession();
 		UserVo username =(UserVo)session.getAttribute("UserName");
-		int id =(int)session.getAttribute("ID");
+//		int id =(int)session.getAttribute("ID");
 		
 		bean.setUserName(username.getUserName());
 		
@@ -96,8 +96,8 @@ public class IppinServlet extends HttpServlet
 		session.setAttribute("ListNumber", i); // 取得する配列の番地
 		session.setAttribute("IPPINList", ippinList);// 配列の中身
 		session.setAttribute("IPPINName", ippin);// 逸品の名前
-		session.setAttribute("UserName", username);// ユーザーの名前
-		session.setAttribute("id", id);// ユーザーid
+//		session.setAttribute("UserName", username);// ユーザーの名前
+//		session.setAttribute("id", id);// ユーザーid
 
 		request.setAttribute("bean", bean);
 

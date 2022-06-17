@@ -39,8 +39,8 @@ public class YesServlet extends HttpServlet{
 		
 		bean.setUserName(username.getUserName());
 		
-		session.setAttribute( "UserName", username );
-		session.setAttribute( "ID", id );
+//		session.setAttribute( "UserName", username );
+//		session.setAttribute( "ID", id );
 		
 		DBUtil dbUtil = new  DBUtil();
 		

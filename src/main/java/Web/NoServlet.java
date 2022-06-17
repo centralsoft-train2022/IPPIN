@@ -38,13 +38,13 @@ public class NoServlet extends HttpServlet{
 		int i =(int)session.getAttribute("ListNumber");
 		String ippinname =(String)session.getAttribute("IPPINName");
 		UserVo username =(UserVo)session.getAttribute("UserName");
-		int id =(int)session.getAttribute("ID");
+//		int id =(int)session.getAttribute("ID");
 		
 		bean.setUserName(username.getUserName());
 		
 		
-		session.setAttribute( "UserName", username );
-		session.setAttribute( "ID", id );
+//		session.setAttribute( "UserName", username );
+//		session.setAttribute( "ID", id );
 		
 		//ランダムで生成したリスト引継ぎ
 		@SuppressWarnings("unchecked")
