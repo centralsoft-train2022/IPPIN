@@ -35,7 +35,7 @@
 		<select name="Amount">
 			<option value="">選択してください</option>
 			<option value="ちょい">ちょい</option>
-			<option value="まあまあ">まあまあ</option>
+			<option value="まぁまぁ">まあまあ</option>
 			<option value="がっつり">がっつり</option>
 		</select><br>
 		

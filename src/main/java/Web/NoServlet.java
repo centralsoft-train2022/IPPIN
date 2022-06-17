@@ -52,7 +52,7 @@ public class NoServlet extends HttpServlet{
 		
 		
 		//リストの中身がなくなったらrecomに飛ぶ
-		try
+		if(ippinList.size() > i)
 		{
 			String ippin2 = ippinList.get(i);
 			
@@ -64,6 +64,7 @@ public class NoServlet extends HttpServlet{
 			bean.setIppin( 		ippin2 );
 			i += 1;
 			session.setAttribute( "IPPINName", ippin2 );
+			
 			//session保存
 			session.setAttribute( "ListNumber", i );
 			session.setAttribute( "IPPINList", ippinList );
@@ -75,7 +76,7 @@ public class NoServlet extends HttpServlet{
 			RequestDispatcher disp = request.getRequestDispatcher("/ippin.jsp");
 			disp.forward(request, response);
 		}
-		catch(Exception e)
+		else
 		{
 			RecomBean rebean = new RecomBean();
 			rebean.setMsg("【条件に合う逸品が無くなりました。オススメから逸品を追加してみては？】");
@@ -87,25 +88,25 @@ public class NoServlet extends HttpServlet{
 	}
 	
 	//選択された逸品のippingoodcountを-1する
-		private static void subippingoodcount(String foodname)
+	private static void subippingoodcount(String foodname)
+	{
+		DBUtil dbUtil = new DBUtil();
+
+		// コネクションを取得
+		try (Connection con = dbUtil.getConnection();)
 		{
-			DBUtil dbUtil = new DBUtil();
+			FoodDao fdao = new FoodDao( con );
+			int foodid = fdao.getFoodid(foodname);
+		
+			fdao.subIppinGoodCount(foodid);
+			con.commit();
 
-			// コネクションを取得
-			try (Connection con = dbUtil.getConnection();)
-			{
-				FoodDao fdao = new FoodDao( con );
-				int foodid = fdao.getFoodid(foodname);
-			
-				fdao.subIppinGoodCount(foodid);
-				con.commit();
-
-			} catch (SQLException e)
-			{
-				throw new RuntimeException(e);// ランタイム例外に載せ替えて再スロー
-			}
-			
+		} catch (SQLException e)
+		{
+			throw new RuntimeException(e);// ランタイム例外に載せ替えて再スロー
 		}
+		
+	}
 		
 		
 		

@@ -37,13 +37,22 @@ public class YesServlet extends HttpServlet{
 		UserVo username =(UserVo)session.getAttribute("UserName");
 		int id =(int)session.getAttribute("ID");
 		
+		//逸品goodカウントを＋１とYESを押した時間を登録するメソッド
+		addippingoodcount(id,ippinname);
+		
 		bean.setUserName(username.getUserName());
-		
-//		session.setAttribute( "UserName", username );
-//		session.setAttribute( "ID", id );
-		
+				
+		request.setAttribute("bean", bean);
+
+		//JSPに遷移する
+		RequestDispatcher disp = request.getRequestDispatcher("/yes.jsp");
+		disp.forward(request, response);
+	}
+	
+	private static void addippingoodcount(int id, String username)
+	{
 		DBUtil dbUtil = new  DBUtil();
-		
+	
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
 		//コネクションを取得
@@ -52,12 +61,12 @@ public class YesServlet extends HttpServlet{
 			FoodDao fdao = new FoodDao( con );
 			FoodHistoryDao fhdao = new FoodHistoryDao(con);
 			
-			int foodid = fdao.getFoodid(ippinname);
+			int foodid = fdao.getFoodid(username);
 			
 			//選択された逸品のippingoodcountを＋1する
-            fdao.sumIppinGoodCount(foodid);
-            
-            //YESボタンを押した時間を追加
+	        fdao.sumIppinGoodCount(foodid);
+	        
+	        //YESボタンを押した時間を追加
 			fhdao.insert(timestamp,id,foodid);
 			
 			con.commit();
@@ -65,16 +74,7 @@ public class YesServlet extends HttpServlet{
 		catch( SQLException e )
 		{
 			throw new RuntimeException( e );//ランタイム例外に載せ替えて再スロー
-		}		
-		
-		
-		
-		request.setAttribute("bean", bean);
-
-		//JSPに遷移する
-		RequestDispatcher disp = request.getRequestDispatcher("/yes.jsp");
-		disp.forward(request, response);
+		}	
 	}
-
 
 }
