@@ -18,6 +18,8 @@
 </div>
  
 <form action="SearchServlet" method="get">
+<input type = "hidden" name = "from jsp" value="search.jsp">
+
   <span><font size="5"><label for="TimeZone"><br>
   　　　　　　　　　　　　　　食べる時間</label></font></span>
 		<select name="TimeZone">
@@ -64,7 +66,7 @@
 <% for( Dao.FoodVo emp: bean.getFoodList()){ %>
 <tr>
 	<td>
-   	<a href="/FoodDetailServlet"><%=emp.getFoodName() %></a> <br>
+   	<a href="FoodDetailServlet?id=<%=emp.getFoodid() %>"><%=emp.getFoodName() %></a> <br>
 	</td>
 </tr>
 
