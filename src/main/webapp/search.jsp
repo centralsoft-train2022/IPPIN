@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>SearchServlent</title>
- <script src="Web/SearchServlet.java"></script>
+
 </head>
 <body>
 <div style="padding: 10px; margin-bottom: 10px; border: 5px double #333333;">
@@ -17,7 +17,7 @@
 </div>
 </div>
  
-
+<form action="SearchServlet" method="get">
   <span><font size="5"><label for="TimeZone"><br>
   　　　　　　　　　　　　　　食べる時間</label></font></span>
 		<select name="TimeZone">
@@ -46,6 +46,36 @@
 		</select><br>
 		
 <button onclick="location.href='./recom.jsp'">オススメ画面に戻る</button>
-<input type="button" value="検索" onclick="SearchServlet"/><br />
+<input type="submit" value="検索" onclick="SearchServlet"/><br />
+</form>
+<%= bean.getAmount() %><br>
+<%= bean.getCookTime() %><br>
+<%= bean.getTimeZone() %><br>
+
+<table  border="1" width="500" cellspacing="0" cellpadding="5" bordercolor="#333333">
+<tr>
+	<th>
+		社員名
+	</th>
+		
+	<th>
+	メールアドレス
+	</th>
+</tr>
+
+
+<% for( Dao.FoodVo emp: bean.getFoodList()){ %>
+<tr>
+	<td>
+   	<%=emp.getFoodName() %> <br>
+	</td>
+</tr>
+
+<% }%>
+</table>
+
+
+
+
 </body>
 </html>
