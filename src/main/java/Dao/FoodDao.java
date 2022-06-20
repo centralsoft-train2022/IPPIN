@@ -1,4 +1,5 @@
 package Dao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,9 +10,7 @@ import java.util.List;
 import Bean.FoodDetailBean;
 import Bean.IppinBean;
 
-
-public class FoodDao
-{
+public class FoodDao {
 	private Connection con;
 
 	private static final String SELECT_NAME_SQL = "SELECT\n"
@@ -267,7 +266,7 @@ public class FoodDao
 			+ "    `food`.`Foodcol`,\r\n"
 			+ "    `food`.`PhotoFileName`,\r\n"
 			+ "    `food`.`User_UserID`\r\n"
-			+ "FROM `ippin`.`food`;\r\n";
+			+ "FROM `ippin`.`food`\r\n";
 
 	public List<FoodVo> getZyoukentukiFoodVo(String timezone, String amount, String cooktime) {
 		IppinBean bean = new IppinBean();
@@ -402,9 +401,7 @@ public class FoodDao
 
 	}
 
-	
-	private static final String GET_FOOD_SQL=
-			"SELECT `food`.`FoodID`,\n"
+	private static final String GET_FOOD_SQL = "SELECT `food`.`FoodID`,\n"
 			+ "    `food`.`Amount`,\n"
 			+ "    `food`.`TimeZone`,\n"
 			+ "    `food`.`CookTime`,\n"
@@ -414,21 +411,18 @@ public class FoodDao
 			+ "    `food`.`User_UserID`\n"
 			+ "FROM `ippin`.`food`\n"
 			+ "WHERE FoodID = ?\n"
-			+ ";"
-			;
-	public FoodDetailBean getFoodDetailBean(int foodID) 
-	{
+			+ ";";
+
+	public FoodDetailBean getFoodDetailBean(int foodID) {
 		FoodDetailBean bean = null;
-		try( PreparedStatement stmt = this.con.prepareStatement( GET_FOOD_SQL ) )
-		{
+		try (PreparedStatement stmt = this.con.prepareStatement(GET_FOOD_SQL)) {
 			/* ｓｑｌ実行 */
 			stmt.setInt(1, foodID);
-			ResultSet rset = stmt.executeQuery( );
+			ResultSet rset = stmt.executeQuery();
 
 			/* 取得したデータをEmployeesVoのインスタンスにまとめます */
-			
-			while( rset.next( ) )
-			{
+
+			while (rset.next()) {
 				bean = new FoodDetailBean();
 				bean.setFoodID(foodID);
 				bean.setAmount(rset.getString(2));
@@ -438,15 +432,12 @@ public class FoodDao
 				bean.setExplanation(rset.getString(6));
 				bean.setPhotoFileName(rset.getString(7));
 				bean.setUserID(rset.getString(8));
-				
 
 			}
-		}
-		catch( SQLException e )
-		{
-			throw new RuntimeException( e );
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
 		}
 		return bean;
 	}
-	
+
 }
