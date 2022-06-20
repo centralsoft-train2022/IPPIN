@@ -1,14 +1,13 @@
 package Dao;
-import Bean.FoodDetailBean;
-
-import Bean.IppinBean;import java.sql.Connection;
-import Bean.IppinBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import Bean.FoodDetailBean;
+import Bean.IppinBean;
 
 
 public class FoodDao
@@ -404,52 +403,6 @@ public class FoodDao
 	}
 
 	
-	private static final String GET_FOOD_SQL=
-			"SELECT `food`.`FoodID`,\n"
-			+ "    `food`.`Amount`,\n"
-			+ "    `food`.`TimeZone`,\n"
-			+ "    `food`.`CookTime`,\n"
-			+ "    `food`.`Name`,\n"
-			+ "    `food`.`Explanation`,\n"
-			+ "    `food`.`PhotoFileName`,\n"
-			+ "    `food`.`User_UserID`\n"
-			+ "FROM `ippin`.`food`\n"
-			+ "WHERE FoodID = ?\n"
-			+ ";"
-			;
-	public FoodDetailBean getFoodDetailBean(int foodID) 
-	{
-		FoodDetailBean bean = null;
-		try( PreparedStatement stmt = this.con.prepareStatement( GET_FOOD_SQL ) )
-		{
-			/* ｓｑｌ実行 */
-			stmt.setInt(1, foodID);
-			ResultSet rset = stmt.executeQuery( );
-
-			/* 取得したデータをEmployeesVoのインスタンスにまとめます */
-			
-			while( rset.next( ) )
-			{
-				bean = new FoodDetailBean();
-				bean.setFoodID(foodID);
-				bean.setAmount(rset.getString(2));
-				bean.setTimeZone(rset.getString(3));
-				bean.setCookTime(rset.getString(4));
-				bean.setFoodName(rset.getString(5));
-				bean.setExplanation(rset.getString(6));
-				bean.setPhotoFileName(rset.getString(7));
-				bean.setUserID(rset.getString(8));
-				
-
-			}
-		}
-		catch( SQLException e )
-		{
-			throw new RuntimeException( e );
-		}
-		return bean;
-	}
-
 	private static final String GET_FOOD_SQL=
 			"SELECT `food`.`FoodID`,\n"
 			+ "    `food`.`Amount`,\n"

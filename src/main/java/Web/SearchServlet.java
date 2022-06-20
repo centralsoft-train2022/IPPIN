@@ -62,7 +62,7 @@ public class SearchServlet extends HttpServlet {
 		bean.setTimeZone(tz);
 		bean.setCookTime(ct);
 		DBUtil dbUtil = new DBUtil();
-		try (Connection con = dbUtil.getConection();) {
+		try (Connection con = dbUtil.getConnection();) {
 			FoodDao dao = new FoodDao(con);
 
 			//osusumeList = edao.getFoodname(AM, TZ, CT);
