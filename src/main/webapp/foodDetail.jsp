@@ -22,6 +22,7 @@
  <br>
 <button onclick="location.href='./recom.jsp'">戻る</button>
 <button onclick="location.href='./userList.jsp'">逸品追加</button>
+<button onclick="location.href='./recom.jsp'">戻る</button>
 
 </body>
 </html>
