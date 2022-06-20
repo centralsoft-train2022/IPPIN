@@ -24,7 +24,7 @@ public class DBUtil {
 
 
 	//コネクション取得の共通メソッド
-		public Connection getConection()
+		public Connection getConnection()
 		{
 			Connection con = null;
 

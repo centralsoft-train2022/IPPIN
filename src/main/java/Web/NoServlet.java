@@ -1,10 +1,14 @@
 package Web;
 
+import Bean.IppinBean;
+import Bean.RecomBean;
+import Dao.DBUtil;
+import Dao.FoodDao;
+import Dao.UserVo;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,12 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import Bean.IppinBean;
-import Bean.RecomBean;
-import Dao.DBUtil;
-import Dao.FoodDao;
-import Dao.UserVo;
 
 
 @WebServlet("/NoServlet")
@@ -52,7 +50,7 @@ public class NoServlet extends HttpServlet{
 		
 		
 		//リストの中身がなくなったらrecomに飛ぶ
-		try
+		if(ippinList.size() > i)
 		{
 			String ippin2 = ippinList.get(i);
 			
@@ -64,6 +62,7 @@ public class NoServlet extends HttpServlet{
 			bean.setIppin( 		ippin2 );
 			i += 1;
 			session.setAttribute( "IPPINName", ippin2 );
+			
 			//session保存
 			session.setAttribute( "ListNumber", i );
 			session.setAttribute( "IPPINList", ippinList );
@@ -75,7 +74,7 @@ public class NoServlet extends HttpServlet{
 			RequestDispatcher disp = request.getRequestDispatcher("/ippin.jsp");
 			disp.forward(request, response);
 		}
-		catch(Exception e)
+		else
 		{
 			RecomBean rebean = new RecomBean();
 			rebean.setMsg("【条件に合う逸品が無くなりました。オススメから逸品を追加してみては？】");
@@ -87,12 +86,21 @@ public class NoServlet extends HttpServlet{
 	}
 	
 	//選択された逸品のippingoodcountを-1する
-		private static void subippingoodcount(String foodname)
-		{
-			DBUtil dbUtil = new DBUtil();
+	private static void subippingoodcount(String foodname)
+	{
+		DBUtil dbUtil = new DBUtil();
 
-			// コネクションを取得
-			try (Connection con = dbUtil.getConection();)
+		// コネクションを取得
+		try (Connection con = dbUtil.getConnection();)
+		{
+			FoodDao fdao = new FoodDao( con );
+			int foodid = fdao.getFoodid(foodname);
+		
+			fdao.subIppinGoodCount(foodid);
+			con.commit();
+
+// コネクションを取得
+			try (Connection con = dbUtil.getConnection();)
 			{
 				FoodDao fdao = new FoodDao( con );
 				int foodid = fdao.getFoodid(foodname);
@@ -104,8 +112,9 @@ public class NoServlet extends HttpServlet{
 			{
 				throw new RuntimeException(e);// ランタイム例外に載せ替えて再スロー
 			}
-			
 		}
+		
+	}
 		
 		
 		

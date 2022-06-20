@@ -1,10 +1,15 @@
 package Web;
 
+import Bean.IppinBean;
+import Bean.RecomBean;
+import Dao.DBUtil;
+import Dao.FoodDao;
+import Dao.FoodHistoryDao;
+import Dao.UserVo;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,13 +17,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import Bean.IppinBean;
-import Bean.RecomBean;
-import Dao.DBUtil;
-import Dao.FoodDao;
-import Dao.FoodHistoryDao;
-import Dao.UserVo;
 
 @WebServlet("/IppinServlet")
 public class IppinServlet extends HttpServlet
@@ -43,12 +41,16 @@ public class IppinServlet extends HttpServlet
 		DBUtil dbUtil = new DBUtil();
 
 		// コネクションを取得
-		try (Connection con = dbUtil.getConection();)
+		try (Connection con = dbUtil.getConnection();)
 		{
 			FoodDao edao = new FoodDao(con);
 
 			ippinList = edao.getZyoukentukiName(tzStr, amStr, crStr);
+			
+			//前回選んだ逸品を取得
+			String nearlyIppin = getNearlyIppin(con);
 
+			//条件に合う逸品がなかった場合
 			if(ippinList.size() == 0)
 			{
 				RecomBean rebean = new RecomBean();
@@ -58,17 +60,15 @@ public class IppinServlet extends HttpServlet
 				disp.forward(request, response);
 			}
 
-			String nearlyIppin = getNearlyIppin();
-
 			System.out.println(ippinList);
 	
-			// 前回食べた物を最後に移動
 			//もし条件で絞られたリストの中に前回食べた物があったらそれを一番最後にやる
 			if( ippinList.indexOf(nearlyIppin) != -1)
 			{
 				ippinList.remove(ippinList.lastIndexOf(nearlyIppin));
 				ippinList.add(nearlyIppin);
 			}
+			
 			// 取得したデータを表示する
 			System.out.println(ippinList);
 
@@ -107,28 +107,23 @@ public class IppinServlet extends HttpServlet
 	}
 
 	// DBから更新が一番最近の逸品を取得する
-	private static String getNearlyIppin()
+	private static String getNearlyIppin(Connection con)
 	{
-		DBUtil dbUtil = new DBUtil();
+		FoodHistoryDao ehdao = new FoodHistoryDao(con);
+		int foodid = ehdao.getFoodid();
 
 		// コネクションを取得
-		try (Connection con = dbUtil.getConection();)
+		try (Connection con = dbUtil.getConnection();)
 		{
 			FoodHistoryDao ehdao = new FoodHistoryDao(con);
 			int foodid = ehdao.getFoodid();
+		String nearlyname = fdao.getNearlyIppin(foodid);
 
-			FoodDao fdao = new FoodDao(con);
+		System.out.println(nearlyname);
 
-			String nearlyname = fdao.getNearlyIppin(foodid);
+		return nearlyname;
 
-			System.out.println(nearlyname);
-
-			return nearlyname;
-
-		} catch (SQLException e)
-		{
-			throw new RuntimeException(e);// ランタイム例外に載せ替えて再スロー
-		}
+		
 	}
 
 }

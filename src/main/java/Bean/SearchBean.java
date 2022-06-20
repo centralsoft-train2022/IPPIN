@@ -4,6 +4,7 @@ import java.util.List;
 
 import Dao.FoodVo;
 
+//テスト
 public class SearchBean {
 	//食べる時間、量、手間で選んだものを名前として出す
 	//画面に出すものは作る
