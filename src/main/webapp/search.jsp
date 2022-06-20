@@ -24,7 +24,7 @@
   　　　　　　　　　　　　　　食べる時間</label></font></span>
 		<select name="TimeZone">
 		
-			<option value="">選択してください</option>
+			<option value="未選択">選択してください</option>
 			<option value="朝">朝</option>
 			<option value="昼">昼</option>
 			<option value="夜">夜</option>
@@ -33,7 +33,7 @@
 		
 <span><font size="5"><label for="Amount">　　　　　　　　　　　　　　　　　　量</label></font></span>
 		<select name="Amount">
-			<option value="">選択してください</option>
+			<option value="未選択">選択してください</option>
 			<option value="ちょい">ちょい</option>
 			<option value="まあまあ">まあまあ</option>
 			<option value="がっつり">がっつり</option>
@@ -41,7 +41,7 @@
 		
 <span><font size="5"><label for="CookTime">　　　　　　　　　　　　　　　　　手間</label></font></span>
 		<select name="CookTime">
-			<option value="">選択してください</option>
+			<option value="未選択">選択してください</option>
 			<option value="楽ちん">楽ちん</option>
 			<option value="そこそこ">そこそこ</option>
 			<option value="割と手間">割と手間</option>

@@ -63,12 +63,10 @@ public class SearchServlet extends HttpServlet {
 		bean.setCookTime(ct);
 		DBUtil dbUtil = new DBUtil();
 		try (Connection con = dbUtil.getConection();) {
-			FoodDao edao = new FoodDao(con);
+			FoodDao dao = new FoodDao(con);
 
 			//osusumeList = edao.getFoodname(AM, TZ, CT);
-			bean.setFoodList(edao.getZyoukentukiFoodVo(tz, am, ct));
-			// 取得したデータを表示する
-			//System.out.println(osusumeList);
+			bean.setFoodList(dao.getZyoukentukiFoodVo(tz, am, ct));
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);// ランタイム例外に載せ替えて再スロー

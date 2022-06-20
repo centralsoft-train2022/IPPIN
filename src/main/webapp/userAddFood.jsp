@@ -19,6 +19,9 @@
 		<input name="IppinName" type="text" ><br>
 		
 		
+		
+		
+		
 		<label for="TimeZone">食べる時間</label>
 		<select name="TimeZone">
 			<option value="">選択してください</option>
@@ -44,9 +47,9 @@
 			<option value="割と手間">割と手間</option>
 		</select><br>
 		
-		<label for="Picture">写真</label>
+		<label for="PhotoFileName">写真</label>
 	
-		<input type="file" name ="Picture"><br>
+		<input type="file" name ="PhotoFileName"><br>
 		<input type="submit" value="逸品追加">
 	</form>
 

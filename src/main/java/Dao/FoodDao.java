@@ -254,8 +254,9 @@ public class FoodDao {
 		return list;
 	}
 
-	//メソッド追加
-	private static String SELECT_ZYOUKEN_FOODVO_SQL = "SELECT `food`.`FoodID`,\r\n"
+	//------------------------------------------------------------------------------
+	//絞り込み用メソッド追加
+	private static final String SELECT_ZYOUKEN_FOODVO_SQL = "SELECT `food`.`FoodID`,\r\n"
 			+ "    `food`.`Amount`,\r\n"
 			+ "    `food`.`TimeZone`,\r\n"
 			+ "    `food`.`CookTime`,\r\n"
@@ -272,40 +273,42 @@ public class FoodDao {
 		bean.setAmount(amount);
 		bean.setCookTime(cooktime);
 
+		String sql = SELECT_ZYOUKEN_FOODVO_SQL;
+
 		System.out.println(bean.getTimezone());
 		boolean flag = false;
 		boolean flag2 = false;
 
 		//TimeZoneが入力されていればwhere句で連結、されなければスキップ
 		if (!bean.getTimezone().equals("未選択")) {
-			SELECT_ZYOUKEN_FOODVO_SQL += " WHERE TimeZone = ?";
+			sql += " WHERE TimeZone = ?";
 			flag = true;
 		}
 		//Amountが入力されていれば処理を実施
 		if (!bean.getAmount().equals("未選択")) {
 			//TimeZoneが入力されていなかった場合はWHERE、されていたらAND
 			if (!flag) {
-				SELECT_ZYOUKEN_FOODVO_SQL += " WHERE Amount = ?"; //TimeZoneが空欄の時はこの?が1番目
+				sql += " WHERE Amount = ?"; //TimeZoneが空欄の時はこの?が1番目
 				flag = true;
 			} else {
-				SELECT_ZYOUKEN_FOODVO_SQL += " AND Amount = ?"; //TimeZoneが入力されればこの?は2番目
+				sql += " AND Amount = ?"; //TimeZoneが入力されればこの?は2番目
 			}
 		}
 		//CookTimeが入力されていれば処理を実施
 		if (!bean.getCookTime().equals("未選択")) {
 			//TimeZoneもAmountも空欄だった場合はwhere、どちらかもしくは両方入力されていたらAND
 			if (!flag) {
-				SELECT_ZYOUKEN_FOODVO_SQL += " WHERE CookTime = ?";
+				sql += " WHERE CookTime = ?";
 			} else {
-				SELECT_ZYOUKEN_FOODVO_SQL += " AND CookTime = ?";
+				sql += " AND CookTime = ?";
 			}
 		}
 
-		System.out.println(SELECT_ZYOUKEN_FOODVO_SQL);
+		System.out.println(sql);
 
 		List<FoodVo> list = new ArrayList<FoodVo>();
 
-		try (PreparedStatement stmt = con.prepareStatement(SELECT_ZYOUKEN_FOODVO_SQL);) {
+		try (PreparedStatement stmt = con.prepareStatement(sql);) {
 			//timeZoneが入力されていれば処理を実施
 			if (!bean.getTimezone().equals("未選択")) {
 				stmt.setString(1, bean.getTimezone());
@@ -348,5 +351,52 @@ public class FoodDao {
 		}
 
 		return list;
+	}
+
+	//逸品登録
+	private static final String INSERT_TAG_SQL = "insert\n"
+			+ " into food\n"
+			+ " (\n"
+			+ " foodid\n"
+			+ " ,Name\n"
+			+ ",timezone\n"
+			+ ",amount\n"
+			+ ",cooktime\n"
+			+ ",photoFileName\n"
+			+ ",user_userid\n"
+			+ " )\n"
+			+ " values\n"
+			+ " (\n"
+			+ "  ?\n"
+			+ "  ,?\n"
+			+ "  ,?\n"
+			+ "  ,?\n"
+			+ "  ,?\n"
+			+ "  ,?\n"
+			+ "  ,?\n"
+			+ " )";
+
+	public void insert(
+			int foodid, String ippinName, String timeZone, String amount, String cookTime, String photoFileName,
+			int userid) {
+
+		System.out.println(ippinName + timeZone + amount + cookTime + photoFileName);
+
+		try (PreparedStatement stmt = this.con.prepareStatement(INSERT_TAG_SQL)) {
+			stmt.setInt(1, foodid);
+			stmt.setString(2, ippinName);
+			stmt.setString(3, timeZone);
+			stmt.setString(4, amount);
+			stmt.setString(5, cookTime);
+			stmt.setString(6, photoFileName);
+			stmt.setInt(7, userid);
+
+			/* ｓｑｌ実行 */
+			stmt.executeUpdate();
+			con.commit();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
 	}
 }
