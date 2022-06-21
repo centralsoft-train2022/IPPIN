@@ -39,6 +39,7 @@ public class SearchServlet extends HttpServlet {
 
 			bean = searchFood(AM, TZ, CT);
 			request.setAttribute("bean", bean);
+			System.out.println(bean.toString());
 		}
 
 		else {

@@ -55,4 +55,10 @@ public class SearchBean {
 		Name = name;
 	}
 
+	@Override
+	public String toString() {
+		return "SearchBean [TimeZone=" + TimeZone + ", Amount=" + Amount + ", CookTime=" + CookTime + ", Name=" + Name
+				+ ", foodList=" + foodList + "]";
+	}
+
 }
