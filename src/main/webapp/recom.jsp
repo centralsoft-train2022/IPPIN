@@ -13,7 +13,13 @@
 
 <a href="FoodDetailServlet?foodID=1"><img src="image/takenoko.jpg" ></a>
 <a href="FoodDetailServlet?foodID=2"><img src="image/kinoko.jpg" ></a>
-<button onclick="location.href='./userHome.jsp'">ホームに戻る</button>
-<button onclick="location.href='./search.jsp'">検索</button>
+
+<form  method="POST" action="UserHomeServlet">
+<input type="submit" value="戻る" name = "NAME">
+</form>
+<form  method="POST" action="SearchServlet">
+<input type="submit" value="検索" name = "NAME">
+</form>
+
 </body>
 </html>

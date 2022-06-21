@@ -38,6 +38,38 @@ public class FoodDao {
 
 		return list;
 	}
+	
+	// 選択された逸品の詳細を取得
+	private static final String SELECT_DETAIL_SQL = "select "
+			+ "   name"
+			+ "   ,cooktime"
+			+ "   ,amount"
+			+ "   ,timezone"
+			+ "   from "
+			+ "   food "
+			+ "   where "
+			+ "   name = ? ";
+
+	
+	public FoodVo getFoodDetail(String name) {
+		
+		FoodVo em = new FoodVo();
+		try (PreparedStatement stmt = con.prepareStatement(SELECT_DETAIL_SQL);) {
+			stmt.setString(1, name);
+			ResultSet rset = stmt.executeQuery();
+			
+			while (rset.next()) {	
+				em.setFoodName(rset.getString(1));
+				em.setCookTime(rset.getString(2));
+				em.setAmount(rset.getString(3));
+				em.setTimeZone(rset.getString(4));
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		return em;
+	}
 
 	// 逸品の名前を逸品goodカウントが高い順に取得
 	private static final String SELECT_NAME_SQL = "SELECT\n"
@@ -83,6 +115,7 @@ public class FoodDao {
 			+ "   cooktime = ? ";
 
 	// 逸品になったfoodidを取得
+	@SuppressWarnings("null")
 	public List<String> getFoodname(String Amount, String TimeZone, String CookTime) {
 		List<String> foodname = null;
 		try (PreparedStatement stmt = con.prepareStatement(SELECT_SEARCHNAME_SQL);) {

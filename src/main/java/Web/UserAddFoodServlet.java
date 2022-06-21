@@ -1,17 +1,21 @@
 package Web;
 
-import Bean.UserAddFoodBean;
-import Dao.DBUtil;
-import Dao.FoodDao;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import Bean.UserAddFoodBean;
+import Dao.DBUtil;
+import Dao.FoodDao;
+import Dao.UserVo;
 
 /**
  * Servlet implementation class UserAddFoodServlet
@@ -40,6 +44,12 @@ public class UserAddFoodServlet extends HttpServlet
 		request.setCharacterEncoding( "UTF-8" );// 文字化け防止
 		String fromStr = request.getParameter( "from1" );
 
+		//session取得
+		HttpSession session =request.getSession();
+		UserVo username =(UserVo)session.getAttribute("UserName");
+//				int id =(int)session.getAttribute("ID");
+						
+				
 		if( fromStr != null )
 		{
 			// 画面から入力したデータを取得する
@@ -66,8 +76,8 @@ public class UserAddFoodServlet extends HttpServlet
 			UserAddFoodBean bean = new UserAddFoodBean( );
 
 			// セッションにユーザー情報保存してsetする
-
-			bean.setUserName( "國井さん" );
+			bean.setUserName(username.getUserName());
+			//bean.setUserName( "國井さん" );
 			request.setAttribute( "bean", bean );
 			// JSPに遷移する
 			RequestDispatcher disp = request.getRequestDispatcher( "/userAddFood.jsp" );

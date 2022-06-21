@@ -24,15 +24,22 @@
 <%for( Dao.FoodVo name: bean.getIppinList()){%>
 <tr>
 	<td>
-   	<a href= './foodDetail2.jsp' ><%=name.getFoodName() %></a><br>
+   
+   	<form  method="POST" action="FoodDetailServlet2">
+	<input type="submit" value=<%=name.getFoodName() %> name = "NAME">
+	</form><br>
 </tr>
 
 <% }%>
 </table>
 
-<input type="text" onclick="location.href='foodDetail2.jsp'" value="追加しようとしてる食べ物">
+<form  method="POST" action="UserHomeServlet">
+<input type="submit" value="戻る">
+</form>
 
-<button onclick="location.href='./userHome.jsp'">戻る</button>
-<button onclick="location.href='./userAdd.jsp'">逸品追加</button>
+<form  method="POST" action="UserAddFoodServlet">
+<input type="submit" value="逸品追加">
+</form>
+
 </body>
 </html>

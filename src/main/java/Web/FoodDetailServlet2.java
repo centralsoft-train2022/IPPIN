@@ -3,7 +3,6 @@ package Web;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,48 +12,55 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Bean.userListBean;
+import Bean.FoodDetailBean2;
 import Dao.DBUtil;
 import Dao.FoodDao;
 import Dao.FoodVo;
 import Dao.UserVo;
 
 
-@WebServlet("/userListServlet")
-public class userListServlet extends HttpServlet {
+@WebServlet("/FoodDetailServlet2")
+public class FoodDetailServlet2 extends HttpServlet {
 
 	protected void doPost(
 			HttpServletRequest request,
 			HttpServletResponse response
 			) throws ServletException, IOException
 	{
+		FoodDetailBean2 bean = new FoodDetailBean2();
+		FoodVo foodDetail = null;
 		
-		List<FoodVo>  ippinNameList = getEmployeesVoList();
-
-		userListBean bean = new userListBean();
-
-		bean.setMsg("逸品リストを表示します");
-		bean.setIppinList( ippinNameList );
-
+		// 文字コードの設定
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
 		
-		HttpSession session = request.getSession();
+		//選択した逸品名を取得
+		String naStr = request.getParameter("NAME");
+		System.out.println(naStr);
 		
-		UserVo username =(UserVo)session.getAttribute("UserName");
-//		int id =(int)session.getAttribute("ID");
+		foodDetail = getFoodDetail(naStr);
 		
+		HttpSession session = request.getSession();		
+		UserVo username =(UserVo)session.getAttribute("UserName");	
+		
+		//beanにセット
 		bean.setUserName(username.getUserName());
-
+		bean.setIppin(foodDetail.getFoodName());
+		bean.setCookTime(foodDetail.getCookTime());
+		bean.setAmount(foodDetail.getAmount());
+		bean.setTimezone(foodDetail.getTimeZone());
+		
 		request.setAttribute("bean", bean);
 
 		//JSPに遷移する
-		RequestDispatcher disp = request.getRequestDispatcher("/userList.jsp");
+		RequestDispatcher disp = request.getRequestDispatcher("/foodDetail2.jsp");
 		disp.forward(request, response);
 	}
-
-	//DBから逸品名を取得する
-	private static List<FoodVo> getEmployeesVoList()
+	
+	//DBから従業員を取得する
+	private static FoodVo getFoodDetail(String name)
 	{
-		List<FoodVo> ippinList = null;
+		FoodVo ippinDetail = null;
 		DBUtil dbUtil = new  DBUtil();
 
 		//コネクションを取得
@@ -62,8 +68,8 @@ public class userListServlet extends HttpServlet {
 		{
 			FoodDao edao = new FoodDao( con );
 
-			//DBから逸品名を取得
-			ippinList = edao.getIppinname();
+			//DBから詳細を取得
+			ippinDetail = edao.getFoodDetail(name);
 
 			//取得したデータを表示する
 			//System.out.println( emp );
@@ -74,8 +80,9 @@ public class userListServlet extends HttpServlet {
 			throw new RuntimeException( e );//ランタイム例外に載せ替えて再スロー
 		}
 
-		return ippinList;
+		return ippinDetail;
 	}
 
-
 }
+
+

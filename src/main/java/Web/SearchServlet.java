@@ -23,7 +23,7 @@ import Dao.FoodVo;
 @WebServlet("/SearchServlet")
 public class SearchServlet extends HttpServlet {
 
-	protected void doGet(
+	protected void doPost(
 			HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException
 

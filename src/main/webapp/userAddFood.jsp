@@ -64,7 +64,10 @@
 		<input type="file" name ="PhotoFileName" style="margin-left:40px"><br><br><br>
 		<br><input type="submit" value="逸品追加" style="margin-right:240px">
 	</form>
-<br><button onclick="location.href='./userHome.jsp'">戻る</button>
+<br>
+<form  method="POST" action="UserHomeServlet">
+<input type="submit" value="戻る">
+</form>
 </div>
 </body>
 </body>
