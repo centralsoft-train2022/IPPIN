@@ -50,9 +50,6 @@
 <button onclick="location.href='./recom.jsp'">オススメ画面に戻る</button>
 <input type="submit" value="検索" onclick="SearchServlet"/><br />
 </form>
-<%= bean.getAmount() %><br>
-<%= bean.getCookTime() %><br>
-<%= bean.getTimeZone() %><br>
 
 <table  border="1" width="500" cellspacing="0" cellpadding="5" bordercolor="#333333">
 <tr>
@@ -66,7 +63,8 @@
 <% for( Dao.FoodVo emp: bean.getFoodList()){ %>
 <tr>
 	<td>
-   	<a href="FoodDetailServlet?id=<%=emp.getFoodid() %>"><%=emp.getFoodName() %></a> <br>
+   		<a href="FoodDetailServlet?id=<%=emp.getFoodid() %>"><%=emp.getFoodName() %></a> <br>
+   	<br>
 	</td>
 </tr>
 

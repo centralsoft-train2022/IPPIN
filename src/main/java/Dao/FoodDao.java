@@ -14,38 +14,31 @@ public class FoodDao {
 	private Connection con;
 
 	//逸品リストの名前取得
-	private static final String SELECT_IPPINNAME_SQL =
-			 "select "
-		+ "   name "
-		+ "   from "
-		+ "   food "
-		;
-	
-	public List<FoodVo> getIppinname() 
-	{
+	private static final String SELECT_IPPINNAME_SQL = "select "
+			+ "   name "
+			+ "   from "
+			+ "   food ";
+
+	public List<FoodVo> getIppinname() {
 		List<FoodVo> list = new ArrayList<FoodVo>();
-		
-		try(PreparedStatement stmt = con.prepareStatement( SELECT_IPPINNAME_SQL );)
-		{
+
+		try (PreparedStatement stmt = con.prepareStatement(SELECT_IPPINNAME_SQL);) {
 			ResultSet rset = stmt.executeQuery();
 
-			while (rset.next())
-			{
+			while (rset.next()) {
 				FoodVo em = new FoodVo();
-			
+
 				em.setFoodName(rset.getString(1));
-				
+
 				list.add(em);
 			}
-		}
-		catch( SQLException e )
-		{
-			throw new RuntimeException( e );
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
 		}
 
 		return list;
 	}
-	
+
 	// 逸品の名前を逸品goodカウントが高い順に取得
 	private static final String SELECT_NAME_SQL = "SELECT\n"
 			+ "name\n"
@@ -376,7 +369,7 @@ public class FoodDao {
 
 			while (rset.next()) {
 				FoodVo em = new FoodVo();
-				em.setFoodName(rset.getString(1));
+				em.setFoodName(rset.getString(5));
 
 				list.add(em);
 			}
