@@ -1,0 +1,17 @@
+@charset "UTF-8";
+body {
+    background-image: url("saru1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 450px;
+    height: 200px;
+}
