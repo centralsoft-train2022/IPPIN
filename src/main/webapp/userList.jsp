@@ -7,9 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type=”text/css” href="css/UserList.css">
+<link rel="stylesheet" href="css/UserList.css">
 
-</head>
 <body>
 
 逸品一覧表示<br> 
