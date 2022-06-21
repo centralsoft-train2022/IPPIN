@@ -12,10 +12,11 @@
 <body>
 	
 	<form method="POST" action="LoginServlet">
-		ログインしてください。<br> 
-		ID<input name="ID" type="text"><br>
-		PW<input name="PW" type="text"> <br> 
-		<input type="submit" value="ユーザーログイン">
+	<br>
+	<font size="7"><b>　ログインしてください。</b></font><br><br>
+	<font size="5.5"><b>　　　ID<input name="ID"type="text"style="margin-left:10px"></b></font><br>
+	<font size="5"><b>　　　PW<input name="PW"type="text"></b></font><br><br>
+		<input type="submit"value="ユーザーログイン"style="margin-left:70px">
 	</form>
 
 </body>
