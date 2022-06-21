@@ -73,23 +73,6 @@ public class SearchServlet extends HttpServlet {
 			throw new RuntimeException(e);// ランタイム例外に載せ替えて再スロー
 		}
 		return bean;
-		//		List<FoodVo> list = new ArrayList<FoodVo>();
-		//		FoodVo fv = new FoodVo();
-		//		fv.setFoodid(0);
-		//		fv.setFoodName("ちょこ");
-		//
-		//		list.add(fv);
-		//
-		//		fv = new FoodVo();
-		//		fv.setFoodid(1);
-		//		fv.setFoodName("らーめん");
-		//		list.add(fv);
-		//
-		//		SearchBean sb = new SearchBean();
-		//		sb.setFoodList(list);
-		//		sb.setAmount(am);
-		//		sb.setTimeZone(tz);
-		//		sb.setCookTime(ct);
-		//		return sb;
+
 	}
 }
