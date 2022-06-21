@@ -45,6 +45,7 @@ public class FoodDao {
 			+ "   ,cooktime"
 			+ "   ,amount"
 			+ "   ,timezone"
+			+ "   ,photofilename"
 			+ "   from "
 			+ "   food "
 			+ "   where "
@@ -63,6 +64,7 @@ public class FoodDao {
 				em.setCookTime(rset.getString(2));
 				em.setAmount(rset.getString(3));
 				em.setTimeZone(rset.getString(4));
+				em.setFilename(rset.getString(5));
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -417,8 +419,7 @@ public class FoodDao {
 	private static final String INSERT_TAG_SQL = "insert\n"
 			+ " into food\n"
 			+ " (\n"
-			+ " foodid\n"
-			+ " ,Name\n"
+			+ " Name\n"
 			+ ",timezone\n"
 			+ ",amount\n"
 			+ ",cooktime\n"
@@ -433,23 +434,21 @@ public class FoodDao {
 			+ "  ,?\n"
 			+ "  ,?\n"
 			+ "  ,?\n"
-			+ "  ,?\n"
 			+ " )";
 
 	public void insert(
-			int foodid, String ippinName, String timeZone, String amount, String cookTime, String photoFileName,
+			String ippinName, String timeZone, String amount, String cookTime, String photoFileName,
 			int userid) {
 
 		System.out.println(ippinName + timeZone + amount + cookTime + photoFileName);
 
 		try (PreparedStatement stmt = this.con.prepareStatement(INSERT_TAG_SQL)) {
-			stmt.setInt(1, foodid);
-			stmt.setString(2, ippinName);
-			stmt.setString(3, timeZone);
-			stmt.setString(4, amount);
-			stmt.setString(5, cookTime);
-			stmt.setString(6, photoFileName);
-			stmt.setInt(7, userid);
+			stmt.setString(1, ippinName);
+			stmt.setString(2, timeZone);
+			stmt.setString(3, amount);
+			stmt.setString(4, cookTime);
+			stmt.setString(5, photoFileName);
+			stmt.setInt(6, userid);
 
 			/* ｓｑｌ実行 */
 			stmt.executeUpdate();

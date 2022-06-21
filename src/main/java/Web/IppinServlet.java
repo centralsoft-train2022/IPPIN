@@ -121,8 +121,7 @@ public class IppinServlet extends HttpServlet
 		System.out.println(nearlyname);
 
 		return nearlyname;
-
-		
+	
 	}
 
 }

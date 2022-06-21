@@ -47,7 +47,7 @@ public class UserAddFoodServlet extends HttpServlet
 		//session取得
 		HttpSession session =request.getSession();
 		UserVo username =(UserVo)session.getAttribute("UserName");
-//				int id =(int)session.getAttribute("ID");
+	    int id =(int)session.getAttribute("ID");
 						
 				
 		if( fromStr != null )
@@ -66,9 +66,9 @@ public class UserAddFoodServlet extends HttpServlet
 			System.out.println( cookTime );
 			System.out.println( photoFileName );
 
-			registFood( 11, ippinName, timeZone, amount, cookTime, photoFileName, 1 );
+			registFood( ippinName, timeZone, amount, cookTime, photoFileName, id );
 
-			RequestDispatcher disp = request.getRequestDispatcher( "/userList.jsp" );
+			RequestDispatcher disp = request.getRequestDispatcher( "/userListServlet" );
 			disp.forward( request, response );
 		}
 		else
@@ -98,7 +98,7 @@ public class UserAddFoodServlet extends HttpServlet
 	}
 
 	private void registFood(
-	        int foodid, String ippinName, String timeZone, String amount, String cookTime, String photoFileName,
+	        String ippinName, String timeZone, String amount, String cookTime, String photoFileName,
 	        int userid
 	)
 	{
@@ -113,7 +113,7 @@ public class UserAddFoodServlet extends HttpServlet
 		{
 
 			FoodDao dao = new FoodDao( c );
-			dao.insert( foodid, ippinName, timeZone, amount, cookTime, photoFileName, userid );
+			dao.insert(ippinName, timeZone, amount, cookTime, photoFileName, userid );
 
 			c.commit( );
 			c.setAutoCommit( true );

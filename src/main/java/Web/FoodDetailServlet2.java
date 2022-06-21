@@ -49,6 +49,8 @@ public class FoodDetailServlet2 extends HttpServlet {
 		bean.setCookTime(foodDetail.getCookTime());
 		bean.setAmount(foodDetail.getAmount());
 		bean.setTimezone(foodDetail.getTimeZone());
+		bean.setFileName(foodDetail.getFilename());
+	
 		
 		request.setAttribute("bean", bean);
 

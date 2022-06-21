@@ -27,6 +27,8 @@ public class FoodVo implements Serializable {
 	private String amount;
 
 	private String cooktime;
+	
+	private String filename;
 
 	/**
 	* Constractor
@@ -97,5 +99,17 @@ public class FoodVo implements Serializable {
 		buffer.append(cooktime);
 		buffer.append("\n]");
 		return buffer.toString();
+	}
+
+	public String getFilename()
+	{
+
+		return filename;
+	}
+
+	public void setFilename( String filename )
+	{
+
+		this.filename = filename;
 	}
 }

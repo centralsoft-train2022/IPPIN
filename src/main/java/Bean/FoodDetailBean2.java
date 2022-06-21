@@ -8,6 +8,7 @@ public class FoodDetailBean2
 	private String Timezone;
 	private String Amount;
 	private String CookTime;
+	private String fileName;
 	
 	public FoodDetailBean2()
 	{}
@@ -59,5 +60,17 @@ public class FoodDetailBean2
 	public void setIppin( String ippin )
 	{
 		this.ippin = ippin;
+	}
+
+	public String getFileName()
+	{
+
+		return fileName;
+	}
+
+	public void setFileName( String fileName )
+	{
+
+		this.fileName = fileName;
 	}
 }

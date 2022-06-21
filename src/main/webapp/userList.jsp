@@ -7,8 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type=”text/css” href="css/UserList.css">
+
 </head>
 <body>
+
 逸品一覧表示<br> 
 ログイン社員名:<%=bean.getUserName()%><br>
 
@@ -26,7 +29,8 @@
 	<td>
    
    	<form  method="POST" action="FoodDetailServlet2">
-	<input type="submit" value=<%=name.getFoodName() %> name = "NAME">
+   	
+	<input type="submit" value=<%=name.getFoodName() %> name = "NAME" class="button">
 	</form><br>
 </tr>
 

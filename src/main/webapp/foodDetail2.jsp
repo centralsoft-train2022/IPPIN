@@ -18,6 +18,13 @@
  量：<%=bean.getAmount()%><br>
  <br>
  手間：<%=bean.getCookTime()%><br>
+ <br>
+ 写真<br>
+ <% if( bean.getFileName() == null){ %>
+ 画像が登録されていません<br>
+ <% }%><% else{ %>
+ <img src=<%=bean.getFileName()%> ><br>
+ <% }%>
  
 <form  method="POST" action="UserHomeServlet">
 <input type="submit" value="ホームに戻る">
