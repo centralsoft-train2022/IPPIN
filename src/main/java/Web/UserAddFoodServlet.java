@@ -60,6 +60,7 @@ public class UserAddFoodServlet extends HttpServlet
 			String	cookTime		= request.getParameter( "CookTime" );
 			String	photoFileName	= request.getParameter( "PhotoFileName" );
 
+			
 			System.out.println( ippinName );
 			System.out.println( timeZone );
 			System.out.println( amount );

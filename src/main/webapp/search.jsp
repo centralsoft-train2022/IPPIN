@@ -17,11 +17,11 @@
 </div>
 </div>
  
-<form action="SearchServlet" method="get">
+<form action="SearchServlet" method="GET">
 <input type = "hidden" name = "from jsp" value="search.jsp">
 
-  <span><font size="5"><label for="TimeZone"><br>
-  　　　　　　　　　　　　　　食べる時間</label></font></span>
+  <span><font size="5"><label for="TimeZone"><br> 
+ 　　　　　　　　　　　　　　食べる時間</label></font></span>
 		<select name="TimeZone">
 		
 			<option value="未選択">選択してください</option>

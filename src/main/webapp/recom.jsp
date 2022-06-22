@@ -17,7 +17,7 @@
 <form  method="POST" action="UserHomeServlet">
 <input type="submit" value="戻る" name = "NAME">
 </form>
-<form  method="POST" action="SearchServlet">
+<form  method="GET" action="SearchServlet">
 <input type="submit" value="検索" name = "NAME">
 </form>
 

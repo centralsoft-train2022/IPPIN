@@ -23,20 +23,21 @@ import Dao.FoodVo;
 @WebServlet("/SearchServlet")
 public class SearchServlet extends HttpServlet {
 
-	protected void doPost(
-			HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException
-
+	protected void doGet( HttpServletRequest request, HttpServletResponse response )
+			throws ServletException, IOException
 	{
 		String fromJsp = request.getParameter("from jsp");
-
+		
 		if (fromJsp != null) {
 			SearchBean bean;
 
+			//文字化け防止
+			request.setCharacterEncoding("utf-8");
+			
 			String AM = request.getParameter("Amount");
 			String TZ = request.getParameter("TimeZone");
 			String CT = request.getParameter("CookTime");
-
+			
 			bean = searchFood(AM, TZ, CT);
 			request.setAttribute("bean", bean);
 			System.out.println(bean.toString());

@@ -324,10 +324,9 @@ public class FoodDao {
 			+ "    `food`.`CookTime`,\r\n"
 			+ "    `food`.`Name`,\r\n"
 			+ "    `food`.`Explanation`,\r\n"
-			+ "    `food`.`Foodcol`,\r\n"
 			+ "    `food`.`PhotoFileName`,\r\n"
 			+ "    `food`.`User_UserID`\r\n"
-			+ "FROM `ippin`.`food`\r\n";
+			+ "FROM `food`\r\n";
 
 	public List<FoodVo> getZyoukentukiFoodVo(String timezone, String amount, String cooktime) {
 		IppinBean bean = new IppinBean();
@@ -467,7 +466,7 @@ public class FoodDao {
 			+ "    `food`.`Explanation`,\n"
 			+ "    `food`.`PhotoFileName`,\n"
 			+ "    `food`.`User_UserID`\n"
-			+ "FROM `ippin`.`food`\n"
+			+ "FROM `food`\n"
 			+ "WHERE FoodID = ?\n"
 			+ ";";
 
