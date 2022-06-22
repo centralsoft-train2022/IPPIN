@@ -1,0 +1,46 @@
+body {
+    background-image: url("haikei.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.button {
+  display       : inline-block;
+  font-size     : 10pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 12px 15px;   /* 余白       */
+  background    : #ffffff;     /* 背景色     */
+  color         : #000000;     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  border        : 2px solid #ffffff;    /* 枠の指定 */
+}
+.button:hover {
+  color         : #ffffff;     /* 背景色     */
+  background    : #000000;     /* 文字色     */
+}
+
+ /* --- テーブル全体のスタイル指定 --------------- */
+.tableArea {
+  margin-left    : 0;                /* 左寄せ     */
+  margin-right   : auto;             /* 自動位置   */
+  border-collapse: separate;         /* 境界線結合 */
+  border-spacing : 1px;            /* 罫線間余白 */
+  font-size      : 9pt;              /* 文字サイズ */
+  background     : #ffffff;          /* テーブル全体の背景色 */
+}
+ /* --- ヘッダーのスタイル指定 ------------------- */
+.tableArea th {
+  text-align    : center;              /* 文字位置   */
+  font-weight   : bold;              /* 太文字     */
+  padding       : 0px 0px;           /* 余白       */
+  border        : 1px #666666 solid; /* 罫線       */
+  background    : #ffff1a;           /* 背景色     */
+}
+ /* --- 明細のスタイル指定 ----------------------- */
+.tableArea td {
+  text-align    : center;            /* 文字位置   */
+  padding       : 3px 3px;           /* 余白       */
+  border        : 1px #666666 solid; /* 罫線       */
+}

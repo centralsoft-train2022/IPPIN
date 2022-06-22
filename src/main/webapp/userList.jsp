@@ -15,8 +15,8 @@
 ログインユーザー名:<%=bean.getUserName()%><br>
 
 <%=bean.getMsg() %><br>
-逸品リスト:<br>
-<table  border="1" width="500" cellspacing="0" cellpadding="5" bordercolor="#333333">
+逸品リスト<br>
+<table border="1" id="makeImg"  class="tableArea">
 <tr>
 	<th>
 		逸品名
