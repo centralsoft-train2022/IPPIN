@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-ログイン社員名:<%=bean.getUserName() %><br>
+ログインユーザー名:<%=bean.getUserName() %><br>
 <%=bean.getMsg() %><br>
 
 <img src="サル.jfif" alt="サル" title="拍手するサル"><br>

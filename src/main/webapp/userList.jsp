@@ -12,7 +12,7 @@
 <body>
 
 逸品一覧表示<br> 
-ログイン社員名:<%=bean.getUserName()%><br>
+ログインユーザー名:<%=bean.getUserName()%><br>
 
 <%=bean.getMsg() %><br>
 逸品リスト:<br>

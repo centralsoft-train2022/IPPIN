@@ -11,7 +11,7 @@
 </head>
 <body>
 	ホーム画面
-	<br> ログイン社員名:<%=bean.getUserName()%><br>
+	<br> ログインユーザー名:<%=bean.getUserName()%><br>
 
 
 	<form method="POST" action="IppinServlet">

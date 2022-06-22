@@ -9,7 +9,7 @@
 </head>
 <body>
 食べ物詳細<br>
-ログイン社員名:<%=bean.getUserName()%><br>
+ログインユーザー名:<%=bean.getUserName()%><br>
  <br>
  逸品名：<%=bean.getIppin()%><br>
  <br>

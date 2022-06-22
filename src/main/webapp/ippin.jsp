@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-ログイン社員名:<%=bean.getUserName() %><br>
+ログインユーザー名:<%=bean.getUserName() %><br>
 
 <form  method="POST" action="FoodDetailServlet2">
 <input type="submit" value=<%=bean.getIppin() %> name = "NAME">

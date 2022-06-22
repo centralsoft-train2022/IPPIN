@@ -22,7 +22,7 @@
 <body>
 	<h1>&emsp;逸品追加画面</h1>
  	<div style="text-align: center">
-	<strong>逸品追加画面 ログインユーザー名：<%=bean.getUserName() %></strong>
+	<strong>ログインユーザー名：<%=bean.getUserName() %></strong>
 	<form  method="POST" action="UserAddFoodServlet">
 	
 		<input type="hidden" name="from1" value="myJsp">
