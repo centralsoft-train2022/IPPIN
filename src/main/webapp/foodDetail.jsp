@@ -20,9 +20,8 @@
  <br>
  <img src="image/<%=bean.getPhotoFileName()%>" >
  <br>
-<button onclick="location.href='./recom.jsp'">戻る</button>
+<INPUT type="button" value="戻る" onClick="history.back()">
 <button onclick="location.href='./userList.jsp'">逸品追加</button>
-<button onclick="location.href='./recom.jsp'">戻る</button>
 
 </body>
 </html>

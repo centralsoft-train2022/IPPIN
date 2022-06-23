@@ -1,8 +1,8 @@
 package Bean;
 
-import java.util.List;
-
 import Dao.FoodVo;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RecomBean
 {
@@ -52,5 +52,18 @@ public class RecomBean
 	public void setIppin( String ippin )
 	{
 		this.ippin = ippin;
+	}
+	
+	private List <RecomSubBean> list = new ArrayList<RecomSubBean>();
+
+	public List<RecomSubBean> getList()
+	{
+		return list;
+	}
+
+	public void setList( List<RecomSubBean> list2 )
+	{
+		this.list = list2;
+		
 	}
 }

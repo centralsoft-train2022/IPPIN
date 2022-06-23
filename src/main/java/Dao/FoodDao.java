@@ -1,14 +1,14 @@
 package Dao;
 
+import Bean.FoodDetailBean;
+import Bean.IppinBean;
+import Bean.RecomSubBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import Bean.FoodDetailBean;
-import Bean.IppinBean;
 
 public class FoodDao {
 	private Connection con;
@@ -497,4 +497,39 @@ public class FoodDao {
 		return bean;
 	}
 
+	
+	private static final String GET_RECOM_SQL = "SELECT \r\n"
+			+ "count(*)\r\n"
+			+ ",good.food_foodid\r\n"
+			+ ",food.PhotoFileName\r\n"
+			+ "FROM \r\n"
+			+ "ippin.good\r\n"
+			+ "JOIN\r\n"
+			+ "ippin.food\r\n"
+			+ "ON food.FoodID = good.Food_FoodID\r\n"
+			+ "GROUP BY\r\n"
+			+ "good.food_foodID\r\n"
+			+ "order by\r\n"
+			+ "count(*)\r\n"
+			+ ";";
+	
+	public List<RecomSubBean> getRecomSubBeanList() {
+		
+		List<RecomSubBean> list = new ArrayList<RecomSubBean>();
+		
+		try (PreparedStatement stmt = con.prepareStatement(GET_RECOM_SQL);) {
+			ResultSet rset = stmt.executeQuery();
+
+			while (rset.next()) {
+				RecomSubBean bean = new RecomSubBean();
+				bean.setFoodID(rset.getString(2));
+				bean.setPhotoFileName(rset.getString(3));
+				list.add(bean);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		return list;
+	}
 }

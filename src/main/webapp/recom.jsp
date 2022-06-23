@@ -9,17 +9,15 @@
 </head>
 <body>
 おすすめリスト画面<br>
-<%=bean.getMsg() %><br>
+<br>
+<a href="FoodDetailServlet?foodID=<%= bean.getList().get(0).getFoodID() %>"><img src="image/<%= bean.getList().get(0).getPhotoFileName()%>"></a>
+<a href="FoodDetailServlet?foodID=<%= bean.getList().get(1).getFoodID() %>"><img src="image/<%= bean.getList().get(1).getPhotoFileName()%>"></a>
+<a href="FoodDetailServlet?foodID=<%= bean.getList().get(2).getFoodID() %>"><img src="image/<%= bean.getList().get(2).getPhotoFileName()%>"></a>
+<a href="FoodDetailServlet?foodID=<%= bean.getList().get(3).getFoodID() %>"><img src="image/<%= bean.getList().get(3).getPhotoFileName()%>"></a>
+<a href="FoodDetailServlet?foodID=<%= bean.getList().get(4).getFoodID() %>"><img src="image/<%= bean.getList().get(4).getPhotoFileName()%>"></a>
+<a href="FoodDetailServlet?foodID=<%= bean.getList().get(5).getFoodID() %>"><img src="image/<%= bean.getList().get(5).getPhotoFileName()%>"></a>
 
-<a href="FoodDetailServlet?foodID=1"><img src="image/takenoko.jpg" ></a>
-<a href="FoodDetailServlet?foodID=2"><img src="image/kinoko.jpg" ></a>
 
-<form  method="POST" action="UserHomeServlet">
-<input type="submit" value="戻る" name = "NAME">
-</form>
-<form  method="GET" action="SearchServlet">
-<input type="submit" value="検索" name = "NAME">
-</form>
 
 </body>
 </html>
