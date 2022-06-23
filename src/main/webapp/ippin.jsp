@@ -9,10 +9,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-ログイン社員名:<%=bean.getUserName() %><br>
+ログインユーザー名:<%=bean.getUserName() %><br>
 
-
-<a href= './foodDetail2.jsp' ><%=bean.getIppin() %></a><br>
+<form  method="POST" action="FoodDetailServlet2">
+<input type="submit" value=<%=bean.getIppin() %> name = "NAME">
+</form>
 
 <form  method="POST" action="YesServlet">
 <input type="submit" value="YES">

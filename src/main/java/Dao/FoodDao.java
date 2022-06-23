@@ -1,8 +1,7 @@
 package Dao;
 import Bean.FoodDetailBean;
 import Bean.IppinBean;
-import Bean.RecomSubBean;
-import java.sql.Connection;
+import Bean.RecomSubBean;import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,10 +9,70 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class FoodDao
 {
 	private Connection con;
 
+	//逸品リストの名前取得
+	private static final String SELECT_IPPINNAME_SQL = "select "
+			+ "   name "
+			+ "   from "
+			+ "   food ";
+
+	public List<FoodVo> getIppinname() {
+		List<FoodVo> list = new ArrayList<FoodVo>();
+
+		try (PreparedStatement stmt = con.prepareStatement(SELECT_IPPINNAME_SQL);) {
+			ResultSet rset = stmt.executeQuery();
+
+			while (rset.next()) {
+				FoodVo em = new FoodVo();
+
+				em.setFoodName(rset.getString(1));
+
+				list.add(em);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		return list;
+	}
+	
+	// 選択された逸品の詳細を取得
+	private static final String SELECT_DETAIL_SQL = "select "
+			+ "   name"
+			+ "   ,cooktime"
+			+ "   ,amount"
+			+ "   ,timezone"
+			+ "   ,photofilename"
+			+ "   from "
+			+ "   food "
+			+ "   where "
+			+ "   name = ? ";
+
+	
+	public FoodVo getFoodDetail(String name) {
+		
+		FoodVo em = new FoodVo();
+		try (PreparedStatement stmt = con.prepareStatement(SELECT_DETAIL_SQL);) {
+			stmt.setString(1, name);
+			ResultSet rset = stmt.executeQuery();
+			
+			while (rset.next()) {	
+				em.setFoodName(rset.getString(1));
+				em.setCookTime(rset.getString(2));
+				em.setAmount(rset.getString(3));
+				em.setTimeZone(rset.getString(4));
+				em.setFilename(rset.getString(5));
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		return em;
+	}
+
+	// 逸品の名前を逸品goodカウントが高い順に取得
 	private static final String SELECT_NAME_SQL = "SELECT\n"
 			+ "name\n"
 			+ "from\n"
@@ -27,7 +86,6 @@ public class FoodDao
 		this.con = con;
 	}
 
-	// 逸品の名前を逸品goodカウントが高い順に取得
 	public List<String> getIppin() {
 		List<String> list = new ArrayList<String>();
 
@@ -58,6 +116,7 @@ public class FoodDao
 			+ "   cooktime = ? ";
 
 	// 逸品になったfoodidを取得
+	@SuppressWarnings("null")
 	public List<String> getFoodname(String Amount, String TimeZone, String CookTime) {
 		List<String> foodname = null;
 		try (PreparedStatement stmt = con.prepareStatement(SELECT_SEARCHNAME_SQL);) {
@@ -264,7 +323,6 @@ public class FoodDao
 			+ "    `food`.`CookTime`,\r\n"
 			+ "    `food`.`Name`,\r\n"
 			+ "    `food`.`Explanation`,\r\n"
-			+ "    `food`.`Foodcol`,\r\n"
 			+ "    `food`.`PhotoFileName`,\r\n"
 			+ "    `food`.`User_UserID`\r\n"
 			+ "FROM `ippin`.`food`;\r\n";
@@ -344,7 +402,7 @@ public class FoodDao
 
 			while (rset.next()) {
 				FoodVo em = new FoodVo();
-				em.setFoodName(rset.getString(1));
+				em.setFoodName(rset.getString(5));
 
 				list.add(em);
 			}
@@ -359,8 +417,7 @@ public class FoodDao
 	private static final String INSERT_TAG_SQL = "insert\n"
 			+ " into food\n"
 			+ " (\n"
-			+ " foodid\n"
-			+ " ,Name\n"
+
 			+ ",timezone\n"
 			+ ",amount\n"
 			+ ",cooktime\n"
@@ -375,23 +432,16 @@ public class FoodDao
 			+ "  ,?\n"
 			+ "  ,?\n"
 			+ "  ,?\n"
-			+ "  ,?\n"
 			+ " )";
 
 	public void insert(
-			int foodid, String ippinName, String timeZone, String amount, String cookTime, String photoFileName,
+
 			int userid) {
 
 		System.out.println(ippinName + timeZone + amount + cookTime + photoFileName);
 
 		try (PreparedStatement stmt = this.con.prepareStatement(INSERT_TAG_SQL)) {
-			stmt.setInt(1, foodid);
-			stmt.setString(2, ippinName);
-			stmt.setString(3, timeZone);
-			stmt.setString(4, amount);
-			stmt.setString(5, cookTime);
-			stmt.setString(6, photoFileName);
-			stmt.setInt(7, userid);
+
 
 			/* ｓｑｌ実行 */
 			stmt.executeUpdate();
@@ -402,9 +452,7 @@ public class FoodDao
 
 	}
 
-	
-	private static final String GET_FOOD_SQL=
-			"SELECT `food`.`FoodID`,\n"
+
 			+ "    `food`.`Amount`,\n"
 			+ "    `food`.`TimeZone`,\n"
 			+ "    `food`.`CookTime`,\n"
@@ -412,23 +460,17 @@ public class FoodDao
 			+ "    `food`.`Explanation`,\n"
 			+ "    `food`.`PhotoFileName`,\n"
 			+ "    `food`.`User_UserID`\n"
-			+ "FROM `ippin`.`food`\n"
+
 			+ "WHERE FoodID = ?\n"
-			+ ";"
-			;
-	public FoodDetailBean getFoodDetailBean(int foodID) 
-	{
+
 		FoodDetailBean bean = null;
-		try( PreparedStatement stmt = this.con.prepareStatement( GET_FOOD_SQL ) )
-		{
+
 			/* ｓｑｌ実行 */
 			stmt.setInt(1, foodID);
-			ResultSet rset = stmt.executeQuery( );
+
 
 			/* 取得したデータをEmployeesVoのインスタンスにまとめます */
-			
-			while( rset.next( ) )
-			{
+
 				bean = new FoodDetailBean();
 				bean.setFoodID(foodID);
 				bean.setAmount(rset.getString(2));
@@ -438,17 +480,13 @@ public class FoodDao
 				bean.setExplanation(rset.getString(6));
 				bean.setPhotoFileName(rset.getString(7));
 				bean.setUserID(rset.getString(8));
-				
 
 			}
-		}
-		catch( SQLException e )
-		{
-			throw new RuntimeException( e );
+
 		}
 		return bean;
 	}
-	
+
 	
 	private static final String GET_RECOM_SQL = "SELECT \r\n"
 			+ "count(*)\r\n"

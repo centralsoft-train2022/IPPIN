@@ -17,11 +17,11 @@
 </div>
 </div>
  
-<form action="SearchServlet" method="get">
+<form action="SearchServlet" method="GET">
 <input type = "hidden" name = "from jsp" value="search.jsp">
 
-  <span><font size="5"><label for="TimeZone"><br>
-  　　　　　　　　　　　　　　食べる時間</label></font></span>
+  <span><font size="5"><label for="TimeZone"><br> 
+ 　　　　　　　　　　　　　　食べる時間</label></font></span>
 		<select name="TimeZone">
 		
 			<option value="未選択">選択してください</option>
@@ -35,7 +35,7 @@
 		<select name="Amount">
 			<option value="未選択">選択してください</option>
 			<option value="ちょい">ちょい</option>
-			<option value="まあまあ">まあまあ</option>
+			<option value="まぁまぁ">まぁまぁ</option>
 			<option value="がっつり">がっつり</option>
 		</select><br>
 		
@@ -50,9 +50,6 @@
 <button onclick="location.href='./recom.jsp'">オススメ画面に戻る</button>
 <input type="submit" value="検索" onclick="SearchServlet"/><br />
 </form>
-<%= bean.getAmount() %><br>
-<%= bean.getCookTime() %><br>
-<%= bean.getTimeZone() %><br>
 
 <table  border="1" width="500" cellspacing="0" cellpadding="5" bordercolor="#333333">
 <tr>
@@ -66,7 +63,8 @@
 <% for( Dao.FoodVo emp: bean.getFoodList()){ %>
 <tr>
 	<td>
-   	<a href="FoodDetailServlet?id=<%=emp.getFoodid() %>"><%=emp.getFoodName() %></a> <br>
+   		<a href="FoodDetailServlet" id=<%=emp.getFoodid() %>"><%=emp.getFoodName() %></a> <br>
+   	<br>
 	</td>
 </tr>
 

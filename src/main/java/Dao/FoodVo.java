@@ -14,7 +14,7 @@ import java.io.Serializable;
  * Symbol	Date		Person		Note
  * [1]		2017/05/18	e.hayashi		Generated.
  */
-public class FoodVo implements Serializable{
+public class FoodVo implements Serializable {
 
 	public static final String TABLE = "food";
 
@@ -25,46 +25,66 @@ public class FoodVo implements Serializable{
 	private String timezone;
 
 	private String amount;
-	
+
 	private String cooktime;
+	
+	private String filename;
 
 	/**
 	* Constractor
 	*/
-	public FoodVo(){}
+	public FoodVo() {
+	}
 
 	/**
 	* Constractor
 	* @param <code>employeeid</code>
 	*/
-	public FoodVo(int foodid){
+	public FoodVo(int foodid) {
 		this.foodid = foodid;
 	}
 
+	public int getFoodid() {
+		return this.foodid;
+	}
 
-	public int getFoodid(){ return this.foodid; }
+	public void setFoodid(int foodid) {
+		this.foodid = foodid;
+	}
 
-	public void setFoodid(int foodid){ this.foodid = foodid; }
+	public String getFoodName() {
+		return this.name;
+	}
 
-	public String getFoodName(){ return this.name; }
+	public void setFoodName(String foodname) {
+		this.name = foodname;
+	}
 
-	public void setFoodName(String foodname){ this.name = foodname; }
+	public String getTimeZone() {
+		return this.timezone;
+	}
 
-	public String getTimeZone(){ return this.timezone; }
+	public void setTimeZone(String timezone) {
+		this.timezone = timezone;
+	}
 
-	public void setTimeZone(String timezone){ this.timezone = timezone; }
+	public String getAmount() {
+		return this.amount;
+	}
 
-	public String getAmount(){ return this.amount; }
+	public void setAmount(String amount) {
+		this.amount = amount;
+	}
 
-	public void setAmount(String amount){ this.amount = amount; }
-	
-	public String getCookTime(){ return this.cooktime; }
+	public String getCookTime() {
+		return this.cooktime;
+	}
 
-	public void setCookTime(String cooktime){ this.cooktime = cooktime; }
-	
+	public void setCookTime(String cooktime) {
+		this.cooktime = cooktime;
+	}
 
-
-	public String toString(){
+	public String toString() {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("[UserVo:");
 		buffer.append(" userfoodid: ");
@@ -80,5 +100,16 @@ public class FoodVo implements Serializable{
 		buffer.append("\n]");
 		return buffer.toString();
 	}
-}
 
+	public String getFilename()
+	{
+
+		return filename;
+	}
+
+	public void setFilename( String filename )
+	{
+
+		this.filename = filename;
+	}
+}

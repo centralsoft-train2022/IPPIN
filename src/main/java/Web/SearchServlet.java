@@ -23,22 +23,24 @@ import Dao.FoodVo;
 @WebServlet("/SearchServlet")
 public class SearchServlet extends HttpServlet {
 
-	protected void doGet(
-			HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException
-
+	protected void doGet( HttpServletRequest request, HttpServletResponse response )
+			throws ServletException, IOException
 	{
 		String fromJsp = request.getParameter("from jsp");
-
+		
 		if (fromJsp != null) {
 			SearchBean bean;
 
+			//文字化け防止
+			request.setCharacterEncoding("utf-8");
+			
 			String AM = request.getParameter("Amount");
 			String TZ = request.getParameter("TimeZone");
 			String CT = request.getParameter("CookTime");
-
+			
 			bean = searchFood(AM, TZ, CT);
 			request.setAttribute("bean", bean);
+			System.out.println(bean.toString());
 		}
 
 		else {
@@ -72,23 +74,6 @@ public class SearchServlet extends HttpServlet {
 			throw new RuntimeException(e);// ランタイム例外に載せ替えて再スロー
 		}
 		return bean;
-		//		List<FoodVo> list = new ArrayList<FoodVo>();
-		//		FoodVo fv = new FoodVo();
-		//		fv.setFoodid(0);
-		//		fv.setFoodName("ちょこ");
-		//
-		//		list.add(fv);
-		//
-		//		fv = new FoodVo();
-		//		fv.setFoodid(1);
-		//		fv.setFoodName("らーめん");
-		//		list.add(fv);
-		//
-		//		SearchBean sb = new SearchBean();
-		//		sb.setFoodList(list);
-		//		sb.setAmount(am);
-		//		sb.setTimeZone(tz);
-		//		sb.setCookTime(ct);
-		//		return sb;
+
 	}
 }

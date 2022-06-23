@@ -11,7 +11,7 @@
 </head>
 <body>
 	ホーム画面
-	<br> ログイン社員名:<%=bean.getUserName()%><br>
+	<br> ログインユーザー名:<%=bean.getUserName()%><br>
 
 
 	<form method="POST" action="IppinServlet">
@@ -37,8 +37,10 @@
 			<option value="割と手間">割と手間</option>
 		</select><br>
 	</form>
-
-	<button onclick="location.href='./userList.jsp'">逸品一覧表示</button>
+	
+	<form method="POST" action="userListServlet">
+		<input type="submit" value="逸品リストを見る">
+	</form>
 
 	<form method="POST" action="UserAddFoodServlet">
 		<input type="submit" value="逸品追加">
