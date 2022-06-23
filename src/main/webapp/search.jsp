@@ -35,7 +35,7 @@
 		<select name="Amount">
 			<option value="未選択">選択してください</option>
 			<option value="ちょい">ちょい</option>
-			<option value="まあまあ">まあまあ</option>
+			<option value="まぁまぁ">まぁまぁ</option>
 			<option value="がっつり">がっつり</option>
 		</select><br>
 		
@@ -63,7 +63,7 @@
 <% for( Dao.FoodVo emp: bean.getFoodList()){ %>
 <tr>
 	<td>
-   		<a href="FoodDetailServlet?id=<%=emp.getFoodid() %>"><%=emp.getFoodName() %></a> <br>
+   		<a href="FoodDetailServlet" id=<%=emp.getFoodid() %>"><%=emp.getFoodName() %></a> <br>
    	<br>
 	</td>
 </tr>

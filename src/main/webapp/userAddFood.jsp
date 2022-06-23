@@ -8,14 +8,7 @@
 
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<style media="screen">
-      h1{
-     	color:black;
-        background-color:#ffff69;
-        font-size: 130%;
-        border:2px solid black;
-      }
-	</style>
+	<link rel="stylesheet" href="css/UserAddFood.css">
 
 </head>
 

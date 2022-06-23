@@ -8,10 +8,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/UserList.css">
+</head>
 
 <body>
 
-逸品一覧表示<br> 
+<h1>&emsp;逸品一覧表示</h1> 
 ログインユーザー名:<%=bean.getUserName()%><br>
 
 <%=bean.getMsg() %><br>
