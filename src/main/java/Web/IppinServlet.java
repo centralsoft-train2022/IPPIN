@@ -1,15 +1,10 @@
 package Web;
 
-import Bean.IppinBean;
-import Bean.RecomBean;
-import Dao.DBUtil;
-import Dao.FoodDao;
-import Dao.FoodHistoryDao;
-import Dao.UserVo;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import Bean.IppinBean;
+import Bean.RecomBean;
+import Dao.DBUtil;
+import Dao.FoodDao;
+import Dao.FoodHistoryDao;
+import Dao.UserVo;
 
 @WebServlet("/IppinServlet")
 public class IppinServlet extends HttpServlet
@@ -43,12 +45,16 @@ public class IppinServlet extends HttpServlet
 		// コネクションを取得
 		try (Connection con = dbUtil.getConnection();)
 		{
-			FoodDao edao = new FoodDao(con);
-
-			ippinList = edao.getZyoukentukiName(tzStr, amStr, crStr);
+			FoodDao fdao = new FoodDao(con);
+			FoodHistoryDao ehdao = new FoodHistoryDao(con);
+			
+			int foodid = ehdao.getFoodid();
+			
+			ippinList = fdao.getZyoukentukiName(tzStr, amStr, crStr);
 			
 			//前回選んだ逸品を取得
-			String nearlyIppin = getNearlyIppin(con);
+			String nearlyIppin = fdao.getNearlyIppin(foodid);
+			//String nearlyIppin = getNearlyIppin(con);
 
 			//条件に合う逸品がなかった場合
 			if(ippinList.size() == 0)
@@ -107,19 +113,19 @@ public class IppinServlet extends HttpServlet
 	}
 
 	// DBから更新が一番最近の逸品を取得する
-	private static String getNearlyIppin(Connection con)
-	{
-		FoodHistoryDao ehdao = new FoodHistoryDao(con);
-		int foodid = ehdao.getFoodid();
-
-		FoodDao fdao = new FoodDao(con);
-
-		String nearlyname = fdao.getNearlyIppin(foodid);
-
-		System.out.println(nearlyname);
-
-		return nearlyname;
-	
-	}
+//	private static String getNearlyIppin(Connection con)
+//	{
+//		FoodHistoryDao ehdao = new FoodHistoryDao(con);
+//		int foodid = ehdao.getFoodid();
+//
+//		FoodDao fdao = new FoodDao(con);
+//
+//		String nearlyname = fdao.getNearlyIppin(foodid);
+//
+//		System.out.println(nearlyname);
+//
+//		return nearlyname;
+//	
+//	}
 
 }

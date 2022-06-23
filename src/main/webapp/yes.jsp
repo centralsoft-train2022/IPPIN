@@ -7,8 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/Common.css">
+<link rel="stylesheet" href="css/Yes.css">
 </head>
 <body>
+逸品確定画面
 ログインユーザー名:<%=bean.getUserName() %><br>
 <%=bean.getMsg() %><br>
 

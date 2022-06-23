@@ -29,7 +29,7 @@ public class YesServlet extends HttpServlet{
 			) throws ServletException, IOException
 	{
 		YesBean bean = new YesBean();
-		bean.setMsg("【決まってよかったね】");
+		bean.setMsg("【決まってよかったね！！！】");
 		
 		//session取得
 		HttpSession session =request.getSession();

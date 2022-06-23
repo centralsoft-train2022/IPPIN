@@ -22,13 +22,11 @@
 	
 		<input type="hidden" name="from1" value="myJsp">
 	
-	<br><label for="IppinName" style="margin-right:30px" ><strong>逸品名</strong>&emsp;&emsp;&emsp;</label>
+	<br><label for="IppinName" style="margin-right:30px" >
+	<strong>逸品名</strong>&emsp;&emsp;&emsp;</label>
 	<input name="IppinName" type="text" ><br>
 		
-		
-		
-		
-		
+
 	<br><label for="TimeZone" style="margin-right:40px"><strong>食べる時間</strong>&emsp;&emsp;&emsp;</label>
 		<select name="TimeZone">
 			<option value="">選択してください</option>

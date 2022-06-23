@@ -1,0 +1,30 @@
+@charset "UTF-8";
+body {
+    background-image: url("haikei.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+ /* --- テーブル全体のスタイル指定 --------------- */
+.tableArea {
+  margin-left    : 0;                /* 左寄せ     */
+  margin-right   : auto;             /* 自動位置   */
+  border-collapse: collapse;         /* 境界線結合 */
+  border-spacing : 0;                /* 罫線間余白 */
+  font-size      : 9pt;              /* 文字サイズ */
+  background     : #ffffff;          /* テーブル全体の背景色 */
+}
+ /* --- ヘッダーのスタイル指定 ------------------- */
+.tableArea th {
+  text-align    : center;            /* 文字位置   */
+  font-weight   : bold;              /* 太文字     */
+  padding       : 0px 0px;           /* 余白       */
+  border        : 1px #666666 solid; /* 罫線       */
+  background    : rgba(77, 166, 255, 0.72);           /* 背景色     */
+}
+ /* --- 明細のスタイル指定 ----------------------- */
+.tableArea td {
+  text-align    : center;            /* 文字位置   */
+  padding       : 1px 2px;           /* 余白       */
+  border        : 1px #666666 solid; /* 罫線       */
+}
