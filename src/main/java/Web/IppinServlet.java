@@ -62,7 +62,7 @@ public class IppinServlet extends HttpServlet
 				RecomBean rebean = new RecomBean();
 				rebean.setMsg("【条件に合う逸品がありません。オススメから逸品を追加してみては？】");
 				request.setAttribute("bean", rebean);
-				RequestDispatcher disp = request.getRequestDispatcher("/recom.jsp");
+				RequestDispatcher disp = request.getRequestDispatcher("/RecomServlet");
 				disp.forward(request, response);
 			}
 

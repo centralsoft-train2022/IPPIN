@@ -6,13 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/Common.css">
+<link rel="stylesheet" href="css/Recom.css">
 </head>
 <body>
-おすすめリスト画面<br>
+<h1>おすすめリスト画面</h1>
+<%= bean.getMsg()%>
 <br>
+<div class="flex-container">
+  
 <%for(int i = 0;(i < bean.getList().size())&&(i < 6); i++) {%>
-<a href="FoodDetailServlet?foodID=<%= bean.getList().get(i).getFoodID() %>"><img src="image/<%= bean.getList().get(i).getPhotoFileName()%>"></a>
+<div class="flex-item">
+<div class="image-wrap">
+<a href="FoodDetailServlet?foodID=<%= bean.getList().get(i).getFoodID() %>">
+
+<img src="image/<%= bean.getList().get(i).getPhotoFileName()%>"></a>
+</div>
+</div>
 <%} %>
+ 
+</div>
 
 <form  method="POST" action="UserHomeServlet">
 <input type="submit" value="戻る" name = "NAME">

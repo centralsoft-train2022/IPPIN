@@ -64,7 +64,8 @@
 <% for( Dao.FoodVo emp: bean.getFoodList()){ %>
 <tr>
 	<td>
-   		<a href="FoodDetailServlet" id=<%=emp.getFoodid() %>"><%=emp.getFoodName() %></a> <br>
+   		<a href="FoodDetailServlet?foodID=<%=emp.getFoodid() %>">
+   		<%=emp.getFoodName() %></a> <br>
    	<br>
 	</td>
 </tr>

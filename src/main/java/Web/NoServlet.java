@@ -1,14 +1,10 @@
 package Web;
 
-import Bean.IppinBean;
-import Bean.RecomBean;
-import Dao.DBUtil;
-import Dao.FoodDao;
-import Dao.UserVo;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import Bean.IppinBean;
+import Bean.RecomBean;
+import Dao.DBUtil;
+import Dao.FoodDao;
+import Dao.UserVo;
 
 
 @WebServlet("/NoServlet")
@@ -79,7 +81,7 @@ public class NoServlet extends HttpServlet{
 			RecomBean rebean = new RecomBean();
 			rebean.setMsg("【条件に合う逸品が無くなりました。オススメから逸品を追加してみては？】");
 			request.setAttribute("bean", rebean);
-			RequestDispatcher disp = request.getRequestDispatcher("/recom.jsp");
+			RequestDispatcher disp = request.getRequestDispatcher("/RecomServlet");
 			disp.forward(request, response);
 		}
 				
