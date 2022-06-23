@@ -42,7 +42,7 @@
 		<input type="submit" value="　　　逸品追加　　　"style="margin-left:70px">
 	</form>
     <br>
-	<button onclick="location.href='./recom.jsp'"style="margin-left:70px">　　おすすめ追加　　</button></div>
+	<button onclick="location.href='RecomServlet'"style="margin-left:70px">　　おすすめ追加　　</button></div>
 	
 	
     <div id="child2">
