@@ -32,15 +32,15 @@
  <% if( bean.getFileName() == null){ %>
  画像が登録されていません
  <% }%><% else{ %>
- <img src=<%="image/" + bean.getFileName()%> >
+ <img src=<%="image/" + bean.getFileName()%> width="400" height="400">
  <% }%>
   </td>
  </tr>
 </table>
 <br>
-<form  method="POST" action="UserHomeServlet">
-<input type="submit" value="ホームに戻る">
-</form>
+
+<input type="submit" value="戻る" onClick="history.back()">
+
 
 
 </body>

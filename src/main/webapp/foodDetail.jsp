@@ -6,22 +6,44 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/Common.css">
+<link rel="stylesheet" href="css/FoodDetail2.css">
 </head>
 <body>
-食べ物詳細<br>
+<h1>食べ物詳細</h1>
+<strong>ログインユーザー名:<%=bean.getUserName()%></strong>
  <br>
- 逸品名：<%=bean.getFoodName()%><br>
- <br>
- 説明：<%=bean.getExplanation()%><br>
- <br>
- 量：<%=bean.getAmount()%><br>
- <br>
- 手間：<%=bean.getCookTime()%><br>
- <br>
- <img src="image/<%=bean.getPhotoFileName()%>" >
+<table class="tableArea" id="makeImg">
+ <tr>
+  <th>逸品名</th><td><%=bean.getFoodName()%></td>
+ </tr>
+ <tr>
+  <th>食べる時間</th><td><%=bean.getTimeZone()%></td>
+ </tr>
+ <tr>
+  <th>量</th><td><%=bean.getAmount()%></td>
+ </tr>
+ <tr>
+  <th>手間</th><td><%=bean.getCookTime()%></td>
+ </tr>
+ <tr>
+  <th>写真</th>
+  <td>
+ <% if( bean.getPhotoFileName() == null){ %>
+ 画像が登録されていません
+ <% }%><% else{ %>
+
+ <img src=<%="image/" + bean.getPhotoFileName()%>  width="400" height="400" >
+
+ <% }%>
+  </td>
+ </tr>
+</table>
  <br>
 <INPUT type="button" value="戻る" onClick="history.back()">
-<button onclick="location.href='./userList.jsp'">逸品追加</button>
+<form method="POST" action="userListServlet">
+	<input type="submit" value="　逸品リストを見る　">
+</form>
 
 </body>
 </html>

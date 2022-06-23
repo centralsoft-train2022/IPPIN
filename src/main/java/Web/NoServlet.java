@@ -80,6 +80,7 @@ public class NoServlet extends HttpServlet{
 		{
 			RecomBean rebean = new RecomBean();
 			rebean.setMsg("【条件に合う逸品が無くなりました。オススメから逸品を追加してみては？】");
+			session.setAttribute( "MESSAGE", rebean.getMsg() );
 			request.setAttribute("bean", rebean);
 			RequestDispatcher disp = request.getRequestDispatcher("/RecomServlet");
 			disp.forward(request, response);

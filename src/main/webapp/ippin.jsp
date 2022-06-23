@@ -30,6 +30,7 @@
 <form  method="POST" action="NoServlet" >
 <input type="submit"  value="NO">
 </form>
-
+<br>
+<INPUT type="button" value="戻る" onClick="history.back()">
 </body>
 </html>

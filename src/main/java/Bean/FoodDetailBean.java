@@ -9,6 +9,7 @@ public class FoodDetailBean {
 	private int foodID;
 	private String TimeZone;
 	private String UserID;
+	private String UserName;
 	
 	
 	public String getTimeZone()
@@ -74,6 +75,12 @@ public class FoodDetailBean {
 	public void setPhotoFileName( String photoFileName )
 	{
 		this.photoFileName = photoFileName;
+	}
+	public String getUserName() {
+		return UserName;
+	}
+	public void setUserName(String userName) {
+		UserName = userName;
 	}
 	
 	

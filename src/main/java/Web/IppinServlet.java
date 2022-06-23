@@ -41,16 +41,26 @@ public class IppinServlet extends HttpServlet
 				
 		List<String> ippinList = null;
 		DBUtil dbUtil = new DBUtil();
-
+		
+		//session取得
+		HttpSession session =request.getSession();
+		UserVo username =(UserVo)session.getAttribute("UserName");
+		int id =(int)session.getAttribute("ID");
+		
+		bean.setUserName(username.getUserName());
+		
+		bean.setMsg("【今日の逸品】");
+		
 		// コネクションを取得
 		try (Connection con = dbUtil.getConnection();)
 		{
 			FoodDao fdao = new FoodDao(con);
 			FoodHistoryDao ehdao = new FoodHistoryDao(con);
 			
+			// もっとも更新が最近のfoodidを取得
 			int foodid = ehdao.getFoodid();
 			
-			ippinList = fdao.getZyoukentukiName(tzStr, amStr, crStr);
+			ippinList = fdao.getZyoukentukiName(tzStr, amStr, crStr,id);
 			
 			//前回選んだ逸品を取得
 			String nearlyIppin = fdao.getNearlyIppin(foodid);
@@ -82,16 +92,6 @@ public class IppinServlet extends HttpServlet
 		{
 			throw new RuntimeException(e);// ランタイム例外に載せ替えて再スロー
 		}
-	    
-		
-		//session取得
-		HttpSession session =request.getSession();
-		UserVo username =(UserVo)session.getAttribute("UserName");
-//		int id =(int)session.getAttribute("ID");
-		
-		bean.setUserName(username.getUserName());
-		
-		bean.setMsg("【今日の逸品】");
 
 		int i = 0;
 		String ippin = ippinList.get(i);

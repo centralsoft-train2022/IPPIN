@@ -11,7 +11,8 @@
 </head>
 <body>
 <h1>おすすめリスト画面</h1>
-<%= bean.getMsg()%>
+<strong>ログインユーザー名:<%=bean.getUserName()%></strong>
+
 <br>
 <div class="flex-container">
   
@@ -27,9 +28,7 @@
  
 </div>
 
-<form  method="POST" action="UserHomeServlet">
-<input type="submit" value="戻る" name = "NAME">
-</form>
+<INPUT type="button" value="戻る" onClick="history.back()">
 <form  method="GET" action="SearchServlet">
 <input type="submit" value="検索" name = "NAME">
 </form>

@@ -28,20 +28,18 @@ public class userListServlet extends HttpServlet {
 			HttpServletResponse response
 			) throws ServletException, IOException
 	{
+		HttpSession session = request.getSession();
 		
-		List<FoodVo>  ippinNameList = getEmployeesVoList();
+		UserVo username =(UserVo)session.getAttribute("UserName");
+		int id =(int)session.getAttribute("ID");
+		
+		List<FoodVo>  ippinNameList = getEmployeesVoList(id);
 
 		userListBean bean = new userListBean();
 
 		bean.setMsg("逸品リストを表示します");
 		bean.setIppinList( ippinNameList );
 
-		
-		HttpSession session = request.getSession();
-		
-		UserVo username =(UserVo)session.getAttribute("UserName");
-//		int id =(int)session.getAttribute("ID");
-		
 		bean.setUserName(username.getUserName());
 
 		request.setAttribute("bean", bean);
@@ -52,7 +50,7 @@ public class userListServlet extends HttpServlet {
 	}
 
 	//DBから逸品名を取得する
-	private static List<FoodVo> getEmployeesVoList()
+	private static List<FoodVo> getEmployeesVoList(int id)
 	{
 		List<FoodVo> ippinList = null;
 		DBUtil dbUtil = new  DBUtil();
@@ -63,7 +61,7 @@ public class userListServlet extends HttpServlet {
 			FoodDao edao = new FoodDao( con );
 
 			//DBから逸品名を取得
-			ippinList = edao.getIppinname();
+			ippinList = edao.getIppinname(id);
 
 			//取得したデータを表示する
 			//System.out.println( emp );

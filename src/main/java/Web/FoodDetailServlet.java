@@ -1,17 +1,21 @@
 package Web;
 
-import Bean.FoodDetailBean;
-import Dao.DBUtil;
-import Dao.FoodDao;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import Bean.FoodDetailBean;
+import Dao.DBUtil;
+import Dao.FoodDao;
+import Dao.UserVo;
 
 
 /**
@@ -36,6 +40,10 @@ public class FoodDetailServlet extends HttpServlet {
 		String strfoodID = request.getParameter("foodID");
 		int foodID = Integer.parseInt(strfoodID);
 		FoodDetailBean bean = getBean(foodID);
+		//session取得
+		HttpSession session =request.getSession();
+		UserVo username =(UserVo)session.getAttribute("UserName");		
+		bean.setUserName(username.getUserName());
 		request.setAttribute("bean", bean);
 		RequestDispatcher disp = request.getRequestDispatcher("/foodDetail.jsp");
 		disp.forward(request, response);

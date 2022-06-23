@@ -46,8 +46,9 @@
 			<option value="割と手間">割と手間</option>
 		</select><br>
 		
-<button onclick="location.href='./recom.jsp'">オススメ画面に戻る</button>
-<input type="submit" value="　　検索　　" onclick="SearchServlet"style="margin-left:382px"/>
+<INPUT type="button" value="戻る" onClick="history.back()">
+
+<input type="submit" value="　　検索　　" onclick="SearchServlet"/>
 <br><br>
 </form>
 

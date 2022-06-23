@@ -1,19 +1,23 @@
 package Web;
 
-import Bean.RecomBean;
-import Bean.RecomSubBean;
-import Dao.DBUtil;
-import Dao.FoodDao;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import Bean.RecomBean;
+import Bean.RecomSubBean;
+import Dao.DBUtil;
+import Dao.FoodDao;
+import Dao.UserVo;
 
 @WebServlet("/RecomServlet")
 
@@ -27,6 +31,13 @@ public class RecomServlet extends HttpServlet
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RecomBean bean =getRecomBeanList();
+		//session取得
+		HttpSession session =request.getSession();
+		UserVo username =(UserVo)session.getAttribute("UserName");
+		
+		bean.setUserName(username.getUserName());
+		//bean.setMsg("オススメ画面です") ;
+		
 		request.setAttribute("bean", bean);
 		RequestDispatcher disp = request.getRequestDispatcher("/recom.jsp");
 		disp.forward(request, response);
