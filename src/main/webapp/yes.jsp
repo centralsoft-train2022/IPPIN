@@ -7,16 +7,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/UserAddFood.css">
 <link rel="stylesheet" href="css/Common.css">
 <link rel="stylesheet" href="css/Yes.css">
 </head>
 <body>
-逸品確定画面
-ログインユーザー名:<%=bean.getUserName() %><br>
-<%=bean.getMsg() %><br>
-
-<img src="image/OK猿.png" alt="サル" title="拍手するサル"><br>
-
+<h1>　逸品確定画面</h1>
+<b>ログインユーザー名:<%=bean.getUserName() %></b><br>
+<font size="7"><b>　　　　　　＼決まってよかったね！！／</b></font><br>
+  
+<img src="image/OK猿.png"> <img src="image/OK猿.png"> <img src="image/OK猿.png"> <img src="image/OK猿.png"> <img src="image/OK猿.png">
 <form  method="POST" action="UserHomeServlet">
 <input type="submit" value="ホームに戻る">
 </form>
