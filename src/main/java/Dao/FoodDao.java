@@ -1,15 +1,16 @@
 package Dao;
+
 import Bean.FoodDetailBean;
 import Bean.IppinBean;
-import Bean.RecomSubBean;import java.sql.Connection;
+import Bean.RecomSubBean;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-{
+public class FoodDao {
 	private Connection con;
 
 	//逸品リストの名前取得
@@ -325,7 +326,7 @@ import java.util.List;
 			+ "    `food`.`Explanation`,\r\n"
 			+ "    `food`.`PhotoFileName`,\r\n"
 			+ "    `food`.`User_UserID`\r\n"
-			+ "FROM `ippin`.`food`;\r\n";
+			+ "FROM `food`\r\n";
 
 	public List<FoodVo> getZyoukentukiFoodVo(String timezone, String amount, String cooktime) {
 		IppinBean bean = new IppinBean();
@@ -417,7 +418,7 @@ import java.util.List;
 	private static final String INSERT_TAG_SQL = "insert\n"
 			+ " into food\n"
 			+ " (\n"
-
+			+ " Name\n"
 			+ ",timezone\n"
 			+ ",amount\n"
 			+ ",cooktime\n"
@@ -435,13 +436,18 @@ import java.util.List;
 			+ " )";
 
 	public void insert(
-
+			String ippinName, String timeZone, String amount, String cookTime, String photoFileName,
 			int userid) {
 
 		System.out.println(ippinName + timeZone + amount + cookTime + photoFileName);
 
 		try (PreparedStatement stmt = this.con.prepareStatement(INSERT_TAG_SQL)) {
-
+			stmt.setString(1, ippinName);
+			stmt.setString(2, timeZone);
+			stmt.setString(3, amount);
+			stmt.setString(4, cookTime);
+			stmt.setString(5, photoFileName);
+			stmt.setInt(6, userid);
 
 			/* ｓｑｌ実行 */
 			stmt.executeUpdate();
@@ -452,7 +458,7 @@ import java.util.List;
 
 	}
 
-
+	private static final String GET_FOOD_SQL = "SELECT `food`.`FoodID`,\n"
 			+ "    `food`.`Amount`,\n"
 			+ "    `food`.`TimeZone`,\n"
 			+ "    `food`.`CookTime`,\n"
@@ -460,17 +466,20 @@ import java.util.List;
 			+ "    `food`.`Explanation`,\n"
 			+ "    `food`.`PhotoFileName`,\n"
 			+ "    `food`.`User_UserID`\n"
-
+			+ "FROM `food`\n"
 			+ "WHERE FoodID = ?\n"
+			+ ";";
 
+	public FoodDetailBean getFoodDetailBean(int foodID) {
 		FoodDetailBean bean = null;
-
+		try (PreparedStatement stmt = this.con.prepareStatement(GET_FOOD_SQL)) {
 			/* ｓｑｌ実行 */
 			stmt.setInt(1, foodID);
-
+			ResultSet rset = stmt.executeQuery();
 
 			/* 取得したデータをEmployeesVoのインスタンスにまとめます */
 
+			while (rset.next()) {
 				bean = new FoodDetailBean();
 				bean.setFoodID(foodID);
 				bean.setAmount(rset.getString(2));
@@ -482,7 +491,8 @@ import java.util.List;
 				bean.setUserID(rset.getString(8));
 
 			}
-
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
 		}
 		return bean;
 	}

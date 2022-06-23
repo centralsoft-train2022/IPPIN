@@ -19,7 +19,7 @@ public class DBUtil {
 	private static final String SERVER_NAME = "35.78.132.52";
 	/* DB名 */
 
-	//private static final String DB_NAME = "ippin";
+	private static final String DB_NAME = "ippin";
 
 
 	// ドライバーのロード
@@ -27,9 +27,8 @@ public class DBUtil {
 	private static final String DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";
 
 	//コネクション取得の共通メソッド
-
-
-
+	public Connection getConnection(){
+		Connection con=null;
 		try {
 			// ドライバーのロード
 			Class.forName(DRIVER_CLASS);
