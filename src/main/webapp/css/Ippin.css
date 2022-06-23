@@ -1,0 +1,58 @@
+@charset "UTF-8";
+body {
+    background-image: url("haikei.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.str {
+  display       : inline-block;        /* ブロック化              */
+  font-weight   : bold;                /* 太字                    */
+  font-size     : 150%;                /* 文字を大きくする        */
+  color         : #ff0000;             /* 文字色                  */
+}
+
+.strInterval {
+  /* --- 文字情報設定 ------------------------------ */
+  font-size      : 20pt;         /* 文字サイズ       */
+  letter-spacing : 0em;          /* 文字間隔         */
+  line-height    : 1em;          /* 行間隔（1行高さ）*/
+}
+
+.button {
+  display       : inline-block;
+  border-radius : 5%;          /* 角丸       */
+  font-size     : 18pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 12px 12px;   /* 余白       */
+  background    : rgba(255, 255, 26, 0.10);     /* 背景色     */
+  color         : #000000;     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  border        : 2px solid rgba(255, 255, 26, 0.10);    /* 枠の指定 */
+}
+.button:hover {
+  color         : rgba(255, 255, 26);     /* 背景色     */
+  background    : #000000;     /* 文字色     */
+}
+
+.reset {
+  color: black;
+  text-decoration: none;
+  font-family: sans-serif; /* 書体もリセットしています。不要であれば削除を */
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: normal;
+  border: none;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0); /* iOSタップ時の挙動を調整 */
+}
+
+
+

@@ -12,11 +12,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Bean.SearchBean;
 import Dao.DBUtil;
 import Dao.FoodDao;
 import Dao.FoodVo;
+import Dao.UserVo;
 
 //食べる時間、量、手間から文字を出す
 
@@ -27,6 +29,9 @@ public class SearchServlet extends HttpServlet {
 			throws ServletException, IOException
 	{
 		String fromJsp = request.getParameter("from jsp");
+		//session取得
+		HttpSession session =request.getSession();
+		UserVo username =(UserVo)session.getAttribute("UserName");
 		
 		if (fromJsp != null) {
 			SearchBean bean;
@@ -39,6 +44,8 @@ public class SearchServlet extends HttpServlet {
 			String CT = request.getParameter("CookTime");
 			
 			bean = searchFood(AM, TZ, CT);
+			// セッションにユーザー情報保存してsetする
+			bean.setUserName(username.getUserName());
 			request.setAttribute("bean", bean);
 			System.out.println(bean.toString());
 		}
@@ -48,6 +55,8 @@ public class SearchServlet extends HttpServlet {
 			SearchBean bean = new SearchBean();
 			List<FoodVo> list = new ArrayList<FoodVo>();
 			bean.setFoodList(list);
+			// セッションにユーザー情報保存してsetする
+			bean.setUserName(username.getUserName());
 			request.setAttribute("bean", bean);
 		}
 

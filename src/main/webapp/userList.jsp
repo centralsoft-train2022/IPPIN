@@ -7,31 +7,31 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/Common.css">
 <link rel="stylesheet" href="css/UserList.css">
 </head>
 
 <body>
 
-<h1>&emsp;逸品一覧表示</h1> 
-ログインユーザー名:<%=bean.getUserName()%><br>
+<h1>&emsp;逸品一覧表示画面</h1> 
+<strong>ログインユーザー名:<%=bean.getUserName()%></strong><br>
 
 <%=bean.getMsg() %><br>
 逸品リスト<br>
 <table border="1" id="makeImg"  class="tableArea">
 <tr>
 	<th>
-		逸品名
+		<strong>逸品名</strong>
 	</th>
 </tr>
 
 <%for( Dao.FoodVo name: bean.getIppinList()){%>
 <tr>
 	<td>
-   
    	<form  method="POST" action="FoodDetailServlet2">
-   	
 	<input type="submit" value=<%=name.getFoodName() %> name = "NAME" class="button">
-	</form><br>
+	</form>
+	</td>
 </tr>
 
 <% }%>

@@ -7,20 +7,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/Common.css">
+<link rel="stylesheet" href="css/Ippin.css">
 </head>
 <body>
-ログインユーザー名:<%=bean.getUserName() %><br>
+<h1>&emsp;逸品表示画面</h1> 
+<strong>ログインユーザー名:<%=bean.getUserName() %></strong><br><br>
 
-<form  method="POST" action="FoodDetailServlet2">
-<input type="submit" value=<%=bean.getIppin() %> name = "NAME">
+<span class="strInterval">【今日の<span class="str">逸品</span>】</span>
+
+<form  method="POST" action="FoodDetailServlet2" style="display: inline">
+<input type="submit" value=<%=bean.getIppin() %>  name = "NAME" class="button">
 </form>
 
-<form  method="POST" action="YesServlet">
-<input type="submit" value="YES">
+<br>
+気に入った？？<br>
+
+<form  method="POST" action="YesServlet" >
+<input type="submit"  value="YES">
 </form>
 
-<form  method="POST" action="NoServlet">
-<input type="submit" value="NO">
+<form  method="POST" action="NoServlet" >
+<input type="submit"  value="NO">
 </form>
 
 </body>

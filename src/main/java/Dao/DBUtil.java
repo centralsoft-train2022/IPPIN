@@ -15,12 +15,12 @@ public class DBUtil {
 	private static final String PASS = "rootroot";
 
 	/* サーバ名 */
-	private static final String SERVER_NAME = "localhost:3306";
-//	private static final String SERVER_NAME = "35.78.132.52";
+	//private static final String SERVER_NAME = "localhost:3306";
+	private static final String SERVER_NAME = "35.78.132.52";
 	/* DB名 */
 
 	private static final String DB_NAME = "ippin";
-
+	//rivate static final String DB_NAME = "mydb";
 
 	// ドライバーのロード
 

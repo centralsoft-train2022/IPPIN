@@ -8,14 +8,16 @@
 
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<link rel="stylesheet" href="css/Common.css">
 	<link rel="stylesheet" href="css/UserAddFood.css">
 
 </head>
 
 <body>
 	<h1>&emsp;逸品追加画面</h1>
- 	<div style="text-align: center">
 	<strong>ログインユーザー名：<%=bean.getUserName() %></strong>
+ 	<div style="text-align: center">
+	
 	<form  method="POST" action="UserAddFoodServlet">
 	
 		<input type="hidden" name="from1" value="myJsp">

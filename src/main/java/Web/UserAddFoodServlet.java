@@ -48,7 +48,8 @@ public class UserAddFoodServlet extends HttpServlet
 		HttpSession session =request.getSession();
 		UserVo username =(UserVo)session.getAttribute("UserName");
 	    int id =(int)session.getAttribute("ID");
-						
+		
+	    
 				
 		if( fromStr != null )
 		{
@@ -75,7 +76,6 @@ public class UserAddFoodServlet extends HttpServlet
 		else
 		{
 			UserAddFoodBean bean = new UserAddFoodBean( );
-
 			// セッションにユーザー情報保存してsetする
 			bean.setUserName(username.getUserName());
 			//bean.setUserName( "國井さん" );

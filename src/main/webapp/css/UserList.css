@@ -5,12 +5,7 @@ body {
     background-repeat: no-repeat;
 }
 
-h1{
-  color:black;
-  background-color:#ffff69;
-  font-size: 130%;
-  border:2px solid black;
-}
+
 
 .button {
   display       : inline-block;

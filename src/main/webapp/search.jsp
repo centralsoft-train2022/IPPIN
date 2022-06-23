@@ -16,6 +16,7 @@
   <span><font size="7">検索</font></span>
 </div>
 </div>
+ <strong>ログインユーザー名：<%=bean.getUserName() %></strong>
  
 <form action="SearchServlet" method="GET">
 <input type = "hidden" name = "from jsp" value="search.jsp">

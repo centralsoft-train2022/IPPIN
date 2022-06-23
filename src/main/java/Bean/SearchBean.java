@@ -12,6 +12,7 @@ public class SearchBean {
 	private String Amount;
 	private String CookTime;
 	private String Name;
+	private String UserName;
 
 	private List<FoodVo> foodList;
 
@@ -59,6 +60,18 @@ public class SearchBean {
 	public String toString() {
 		return "SearchBean [TimeZone=" + TimeZone + ", Amount=" + Amount + ", CookTime=" + CookTime + ", Name=" + Name
 				+ ", foodList=" + foodList + "]";
+	}
+
+	public String getUserName()
+	{
+
+		return UserName;
+	}
+
+	public void setUserName( String userName )
+	{
+
+		UserName = userName;
 	}
 
 }
