@@ -9,10 +9,11 @@
 </head>
 <body>
 おすすめリスト画面<br>
-<%=bean.getMsg() %><br>
+<br>
+<a href="FoodDetailServlet?foodID=<%= bean.getList().get(0).getFoodID() %>"><img src="image/<%= bean.getList().get(0).getPhotoFileName()%>"></a>
+<a href="FoodDetailServlet?foodID=<%= bean.getList().get(1).getFoodID() %>"><img src="image/<%= bean.getList().get(1).getPhotoFileName()%>"></a>
 
-<a href="FoodDetailServlet?foodID=1"><img src="image/takenoko.jpg" ></a>
-<a href="FoodDetailServlet?foodID=2"><img src="image/kinoko.jpg" ></a>
+
 <button onclick="location.href='./userHome.jsp'">ホームに戻る</button>
 <button onclick="location.href='./search.jsp'">検索</button>
 </body>

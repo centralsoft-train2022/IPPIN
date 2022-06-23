@@ -44,6 +44,6 @@
 		<input type="submit" value="逸品追加">
 	</form>
 
-	<button onclick="location.href='./recom.jsp'">おすすめ追加</button>
+	<button onclick="location.href='RecomServlet'">おすすめ追加</button>
 </body>
 </html>
