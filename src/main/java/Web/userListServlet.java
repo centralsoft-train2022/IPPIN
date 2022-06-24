@@ -32,12 +32,13 @@ public class userListServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String fromStr = request.getParameter( "from1" );
 		String strfoodID = request.getParameter("foodID");
-		int foodID = Integer.parseInt(strfoodID);
+		
 		UserVo username =(UserVo)session.getAttribute("UserName");
 		int id =(int)session.getAttribute("ID");
 		
 		if(fromStr != null)
 		{
+			int foodID = Integer.parseInt(strfoodID);
 			updateUserID(foodID);
 		}
 		List<FoodVo>  ippinNameList = getEmployeesVoList(id);
