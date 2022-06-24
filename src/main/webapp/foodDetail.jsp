@@ -41,8 +41,9 @@
 </table>
  <br>
 <INPUT type="button" value="戻る" onClick="history.back()">
-<form method="POST" action="userListServlet">
-	<input type="submit" value="　逸品リストを見る　">
+<form method="POST" action="userListServlet?foodID=<%=bean.getFoodID() %>">
+	<input type="hidden" name="from1" value="myJsp">
+	<input type="submit" value="　逸品リストに追加　">
 </form>
 
 </body>

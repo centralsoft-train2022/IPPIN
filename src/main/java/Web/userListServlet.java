@@ -28,11 +28,18 @@ public class userListServlet extends HttpServlet {
 			HttpServletResponse response
 			) throws ServletException, IOException
 	{
+		request.setCharacterEncoding( "UTF-8" );// 文字化け防止
 		HttpSession session = request.getSession();
-		
+		String fromStr = request.getParameter( "from1" );
+		String strfoodID = request.getParameter("foodID");
+		int foodID = Integer.parseInt(strfoodID);
 		UserVo username =(UserVo)session.getAttribute("UserName");
 		int id =(int)session.getAttribute("ID");
 		
+		if(fromStr != null)
+		{
+			updateUserID(foodID);
+		}
 		List<FoodVo>  ippinNameList = getEmployeesVoList(id);
 
 		userListBean bean = new userListBean();
@@ -74,6 +81,28 @@ public class userListServlet extends HttpServlet {
 
 		return ippinList;
 	}
+	
+	
+	//オススメリストから逸品追加
+	private static void updateUserID(int foodid)
+	{
+		DBUtil dbUtil = new  DBUtil();
 
+		//コネクションを取得
+		try( Connection  con = dbUtil.getConnection(); )
+		{
+			FoodDao edao = new FoodDao( con );
+			
+			//オススメリストから逸品追加
+			edao.updateUserID(foodid);
+
+		}
+		catch( SQLException e )
+		{
+			throw new RuntimeException( e );//ランタイム例外に載せ替えて再スロー
+		}
+
+		
+	}
 
 }

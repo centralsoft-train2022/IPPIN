@@ -524,4 +524,24 @@ public class FoodDao {
 
 		return list;
 	}
+	
+	//オススメリストから逸品追加
+	private static final String UPDATE_USERID_SQL = "UPDATE "
+			+ "`food` "
+			+ "SET `User_UserID` = '1' "
+			+ "WHERE (`Foodid` = ?) "
+			+ "and (`User_UserID` = '3')";
+	
+	public void updateUserID(int foodid) {
+		
+		try (PreparedStatement stmt = con.prepareStatement(UPDATE_USERID_SQL);) {
+			stmt.setInt(1, foodid);
+			stmt.executeUpdate();
+			con.commit();
+		
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
 }

@@ -38,7 +38,7 @@
 </table>
 
 <form  method="POST" action="UserHomeServlet">
-<input type="submit" value="戻る">
+<input type="submit" value="ホームに戻る">
 </form>
 
 <form  method="POST" action="UserAddFoodServlet">
