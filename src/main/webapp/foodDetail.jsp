@@ -45,6 +45,12 @@
 	<input type="hidden" name="from1" value="myJsp">
 	<input type="submit" value="　逸品リストに追加　">
 </form>
+<form method="POST" action="FoodDetailServlet?foodID=<%=bean.getFoodID() %>">
+	<input type="hidden" name="from1" value="myJsp">
+	<input type="submit" value="　GOOD　">
+</form>
+
+
 
 </body>
 </html>

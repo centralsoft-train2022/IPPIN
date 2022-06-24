@@ -544,4 +544,23 @@ public class FoodDao {
 		}
 
 	}
+	
+	// goodカウント＋１
+	private static final String UPDATE_GOOD_SQL = "UPDATE \n"
+			+ "good \n"
+			+ "SET \n"
+			+ "goodid = coalesce(goodid,0) + 1 \n"
+			+ "WHERE \n"
+			+ "food_foodid = ?";
+	
+	
+	public void sumGoodCount(int foodid) {
+		try (PreparedStatement stmt = con.prepareStatement(UPDATE_GOOD_SQL);) {
+			stmt.setInt(1, foodid);
+			stmt.executeUpdate();
+			con.commit();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

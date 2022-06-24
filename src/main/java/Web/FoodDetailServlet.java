@@ -37,11 +37,19 @@ public class FoodDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String fromStr = request.getParameter( "from1" );
+		
 		String strfoodID = request.getParameter("foodID");
 		int foodID = Integer.parseInt(strfoodID);
 		FoodDetailBean bean = getBean(foodID);
 		//session取得
 		HttpSession session =request.getSession();
+
+		if(fromStr != null)
+		{
+			sumGoodCount(foodID);
+		}
+		
 		UserVo username =(UserVo)session.getAttribute("UserName");		
 		bean.setUserName(username.getUserName());
 		request.setAttribute("bean", bean);
@@ -73,4 +81,26 @@ public class FoodDetailServlet extends HttpServlet {
 		}
 		return bean;
 	}
+	
+	//オススメリストから逸品追加
+	private static void sumGoodCount(int foodid)
+	{
+		DBUtil dbUtil = new  DBUtil();
+
+		//コネクションを取得
+		try( Connection  con = dbUtil.getConnection(); )
+		{
+			FoodDao edao = new FoodDao( con );
+			
+			//GOODカウント＋１
+			edao.sumGoodCount(foodid);
+
+		}
+		catch( SQLException e )
+		{
+			throw new RuntimeException( e );//ランタイム例外に載せ替えて再スロー
+		}
+
+	}
+	
 }
