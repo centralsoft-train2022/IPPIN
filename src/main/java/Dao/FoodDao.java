@@ -502,7 +502,8 @@ public class FoodDao {
 			+ "GROUP BY\r\n"
 			+ "food.FoodID\r\n"
 			+ "order by\r\n"
-			+ "count(*)\r\n"
+			+ "goodid\r\n"
+			+ "DESC"
 			+ ";";
 	
 	public List<RecomSubBean> getRecomSubBeanList() {

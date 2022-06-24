@@ -50,7 +50,9 @@
 	<input type="submit" value="　GOOD　">
 </form>
 
-
+<form  method="POST" action="UserHomeServlet">
+<input type="submit" value="ホームに戻る">
+</form>
 
 </body>
 </html>
