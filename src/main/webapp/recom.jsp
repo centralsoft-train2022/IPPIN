@@ -28,9 +28,22 @@
  
 </div>
 
-<INPUT type="button" value="戻る" onClick="history.back()">
+
+
+<style>
+input.button {
+  padding-left: 3em;
+  padding-right: 3em;
+  height: 5em;
+  font-size: 100%;
+}
+</style>
+
+
+
+<INPUT type="button" value="戻る" onClick="history.back()" class="button"><br><br>
 <form  method="GET" action="SearchServlet">
-<input type="submit" value="検索" name = "NAME">
+<input type="submit" value="検索" name = "NAME" class="button">
 </form>
 
 </body>
