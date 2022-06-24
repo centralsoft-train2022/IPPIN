@@ -20,7 +20,7 @@
 	
 	<form  method="POST" action="UserAddFoodServlet">
 	
-		<input type="hidden" name="from1" value="myJsp">
+		<input type="hidden" name="from2" value="myJsp">
 	
 	<br><label for="IppinName" style="margin-right:30px" >
 	<strong>逸品名</strong>&emsp;&emsp;&emsp;</label>

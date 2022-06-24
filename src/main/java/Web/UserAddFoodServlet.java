@@ -42,7 +42,7 @@ public class UserAddFoodServlet extends HttpServlet
 	        throws ServletException, IOException
 	{
 		request.setCharacterEncoding( "UTF-8" );// 文字化け防止
-		String fromStr = request.getParameter( "from1" );
+		String fromStr = request.getParameter( "from2" );
 
 		//session取得
 		HttpSession session =request.getSession();
