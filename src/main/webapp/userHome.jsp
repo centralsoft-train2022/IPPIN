@@ -22,6 +22,19 @@
       #child2 {
         flex-grow: 1;
       }
+      
+      
+      
+      
+input.button {
+  padding-left: 3em;
+  padding-right: 3em;
+  height: 3em;
+  font-size: 100%;
+}
+
+
+      
  </style>
  
 <link rel="stylesheet" href="css/TitleHaikei.css">
@@ -69,7 +82,7 @@
 			<option value="そこそこ">そこそこ</option>
 			<option value="割と手間">割と手間</option>
 		</select><br><br>
-		<input type="submit" value="　　IPPIN　　"style="margin-left:70px"> <br>
+		<input type="submit" value="IPPIN"style="margin-left:70px" class="button"> <br>
 	</form></div>
   </div>
 	<br>
